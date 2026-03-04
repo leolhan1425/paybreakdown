@@ -1,0 +1,208 @@
+'use client';
+
+import { useState, useEffect, useRef, useCallback } from 'react';
+import statesData from '../data/states.json';
+import { calculateTakeHome, TaxResult } from '@/lib/tax-engine';
+import { ParsedSlug } from '@/lib/slug-generator';
+
+const NO_TAX_STATES = new Set(['AK', 'FL', 'NV', 'NH', 'SD', 'TN', 'TX', 'WA', 'WY']);
+
+interface Props {
+  initialValues: ParsedSlug & { stateCode: string };
+  onResultChange: (result: TaxResult, period: 'hourly' | 'annual') => void;
+}
+
+function formatDisplay(amount: number, period: 'hourly' | 'annual'): string {
+  if (period === 'annual') return amount.toLocaleString('en-US');
+  return String(amount);
+}
+
+export default function Calculator({ initialValues, onResultChange }: Props) {
+  const [period, setPeriod] = useState<'hourly' | 'annual'>(initialValues.period);
+  const [amount, setAmount] = useState(initialValues.amount);
+  const [stateCode, setStateCode] = useState(initialValues.stateCode);
+  const [filingStatus, setFilingStatus] = useState<'single' | 'married'>('single');
+  const [hoursPerWeek, setHoursPerWeek] = useState(40);
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [inputDisplay, setInputDisplay] = useState(() => formatDisplay(initialValues.amount, initialValues.period));
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+
+  const recalculate = useCallback((
+    amt: number,
+    per: 'hourly' | 'annual',
+    sc: string,
+    fs: 'single' | 'married',
+    hrs: number,
+  ) => {
+    if (amt <= 0) return;
+    const result = calculateTakeHome({ amount: amt, period: per, stateCode: sc, filingStatus: fs, hoursPerWeek: hrs });
+    onResultChange(result, per);
+  }, [onResultChange]);
+
+  // Trigger on mount so client state matches server
+  useEffect(() => {
+    recalculate(amount, period, stateCode, filingStatus, hoursPerWeek);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handlePeriodToggle = (newPeriod: 'hourly' | 'annual') => {
+    setPeriod(newPeriod);
+    setInputDisplay(formatDisplay(amount, newPeriod));
+    recalculate(amount, newPeriod, stateCode, filingStatus, hoursPerWeek);
+  };
+
+  const handleAmountChange = (value: string) => {
+    const raw = value.replace(/[$,]/g, '');
+    if (!/^\d*\.?\d*$/.test(raw)) return;
+    setInputDisplay(value);
+    const num = parseFloat(raw);
+    if (!isNaN(num) && num > 0) {
+      clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => {
+        setAmount(num);
+        recalculate(num, period, stateCode, filingStatus, hoursPerWeek);
+      }, 300);
+    }
+  };
+
+  const handleAmountBlur = () => {
+    const raw = inputDisplay.replace(/[$,]/g, '');
+    const num = parseFloat(raw);
+    if (!isNaN(num) && num > 0) {
+      setAmount(num);
+      setInputDisplay(formatDisplay(num, period));
+    }
+  };
+
+  const handleStateChange = (sc: string) => {
+    setStateCode(sc);
+    recalculate(amount, period, sc, filingStatus, hoursPerWeek);
+  };
+
+  const handleFilingStatusChange = (fs: 'single' | 'married') => {
+    setFilingStatus(fs);
+    recalculate(amount, period, stateCode, fs, hoursPerWeek);
+  };
+
+  const handleHoursChange = (hrs: number) => {
+    setHoursPerWeek(hrs);
+    recalculate(amount, period, stateCode, filingStatus, hrs);
+  };
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
+      {/* Period toggle */}
+      <div className="flex justify-center mb-5">
+        <div className="inline-flex rounded-full bg-gray-100 p-1">
+          {(['hourly', 'annual'] as const).map(p => (
+            <button
+              key={p}
+              onClick={() => handlePeriodToggle(p)}
+              className={`px-5 py-1.5 rounded-full text-sm font-medium transition-colors ${
+                period === p
+                  ? 'bg-white text-gray-900 shadow-sm'
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              {p === 'hourly' ? 'Hourly' : 'Annual'}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Amount input */}
+      <div className="mb-5">
+        <label className="block text-sm text-gray-500 mb-1">
+          {period === 'hourly' ? 'Hourly Rate' : 'Annual Salary'}
+        </label>
+        <div className="relative">
+          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-semibold text-gray-400">$</span>
+          <input
+            type="text"
+            inputMode="decimal"
+            value={inputDisplay}
+            onChange={e => handleAmountChange(e.target.value)}
+            onBlur={handleAmountBlur}
+            placeholder={period === 'hourly' ? '20' : '75,000'}
+            className="w-full pl-10 pr-4 py-3 text-2xl font-bold text-gray-900 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:outline-none transition-colors"
+          />
+        </div>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
+        {/* State dropdown */}
+        <div>
+          <label className="block text-sm text-gray-500 mb-1">State</label>
+          <select
+            value={stateCode}
+            onChange={e => handleStateChange(e.target.value)}
+            className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm text-gray-900 focus:border-blue-500 focus:outline-none bg-white"
+          >
+            {statesData
+              .slice()
+              .sort((a, b) => a.name.localeCompare(b.name))
+              .map(s => (
+                <option key={s.code} value={s.code}>
+                  {s.name}{NO_TAX_STATES.has(s.code) ? ' ★' : ''}
+                </option>
+              ))}
+          </select>
+          {NO_TAX_STATES.has(stateCode) && (
+            <span className="inline-block mt-1 text-xs text-green-700 bg-green-50 px-2 py-0.5 rounded-full">
+              No state income tax
+            </span>
+          )}
+        </div>
+
+        {/* Filing status */}
+        <div>
+          <label className="block text-sm text-gray-500 mb-1">Filing Status</label>
+          <div className="flex rounded-lg border border-gray-200 overflow-hidden">
+            {(['single', 'married'] as const).map(fs => (
+              <button
+                key={fs}
+                onClick={() => handleFilingStatusChange(fs)}
+                className={`flex-1 py-2.5 text-sm font-medium transition-colors capitalize ${
+                  filingStatus === fs
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-white text-gray-600 hover:bg-gray-50'
+                }`}
+              >
+                {fs}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Advanced toggle */}
+      <button
+        onClick={() => setShowAdvanced(v => !v)}
+        className="text-sm text-blue-600 hover:text-blue-800 font-medium"
+      >
+        {showAdvanced ? '▲ Hide' : '▼ Advanced options'}
+      </button>
+
+      {showAdvanced && period === 'hourly' && (
+        <div className="mt-4 pt-4 border-t border-gray-100">
+          <label className="block text-sm text-gray-500 mb-2">
+            Hours per week: <span className="font-semibold text-gray-800">{hoursPerWeek}</span>
+          </label>
+          <input
+            type="range"
+            min={20}
+            max={60}
+            value={hoursPerWeek}
+            onChange={e => handleHoursChange(Number(e.target.value))}
+            className="w-full accent-blue-600"
+          />
+          <div className="flex justify-between text-xs text-gray-400 mt-1">
+            <span>20 hrs</span>
+            <span>40 hrs</span>
+            <span>60 hrs</span>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}

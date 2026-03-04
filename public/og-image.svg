@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af"/>
+      <stop offset="100%" style="stop-color:#2563eb"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="80" y="80" width="1040" height="470" rx="24" fill="rgba(255,255,255,0.07)"/>
+  <text x="600" y="255" font-family="Arial, Helvetica, sans-serif" font-size="88" font-weight="700" fill="white" text-anchor="middle">PayBreakdown</text>
+  <text x="600" y="340" font-family="Arial, Helvetica, sans-serif" font-size="38" fill="rgba(255,255,255,0.85)" text-anchor="middle">Free Salary &amp; Take-Home Pay Calculator</text>
+  <text x="600" y="410" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="rgba(255,255,255,0.60)" text-anchor="middle">2025 Tax Data · All 50 States · Free Forever</text>
+</svg>

@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next';
 import { getAllSlugs, getAllStateSlugs } from '@/lib/slug-generator';
 
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://paybreakdown.com';
 

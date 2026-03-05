@@ -12,7 +12,14 @@
     "medianHomePrice": 750000,
     "population": 19900000,
     "lat": 40.7128,
-    "lng": -74.006
+    "lng": -74.006,
+    "rent": {
+      "studio": 3455,
+      "oneBed": 4430,
+      "twoBed": 5100,
+      "threeBed": 6911,
+      "fourBed": 8550
+    }
   },
   {
     "slug": "los-angeles-ca",
@@ -27,7 +34,14 @@
     "medianHomePrice": 940000,
     "population": 13300000,
     "lat": 34.0522,
-    "lng": -118.2437
+    "lng": -118.2437,
+    "rent": {
+      "studio": 1790,
+      "oneBed": 2295,
+      "twoBed": 2995,
+      "threeBed": 3580,
+      "fourBed": 4429
+    }
   },
   {
     "slug": "chicago-il",
@@ -42,7 +56,14 @@
     "medianHomePrice": 374000,
     "population": 9500000,
     "lat": 41.8781,
-    "lng": -87.6298
+    "lng": -87.6298,
+    "rent": {
+      "studio": 1541,
+      "oneBed": 1975,
+      "twoBed": 2350,
+      "threeBed": 3081,
+      "fourBed": 3812
+    }
   },
   {
     "slug": "houston-tx",
@@ -57,7 +78,14 @@
     "medianHomePrice": 335000,
     "population": 7800000,
     "lat": 29.7604,
-    "lng": -95.3698
+    "lng": -95.3698,
+    "rent": {
+      "studio": 881,
+      "oneBed": 1129,
+      "twoBed": 1390,
+      "threeBed": 1761,
+      "fourBed": 2179
+    }
   },
   {
     "slug": "phoenix-az",
@@ -72,7 +100,14 @@
     "medianHomePrice": 460000,
     "population": 5190000,
     "lat": 33.4484,
-    "lng": -112.074
+    "lng": -112.074,
+    "rent": {
+      "studio": 932,
+      "oneBed": 1195,
+      "twoBed": 1400,
+      "threeBed": 1864,
+      "fourBed": 2306
+    }
   },
   {
     "slug": "philadelphia-pa",
@@ -87,7 +122,14 @@
     "medianHomePrice": 400000,
     "population": 6330000,
     "lat": 39.9526,
-    "lng": -75.1652
+    "lng": -75.1652,
+    "rent": {
+      "studio": 1092,
+      "oneBed": 1400,
+      "twoBed": 1699,
+      "threeBed": 2184,
+      "fourBed": 2702
+    }
   },
   {
     "slug": "san-antonio-tx",
@@ -102,7 +144,14 @@
     "medianHomePrice": 315000,
     "population": 2763000,
     "lat": 29.4241,
-    "lng": -98.4936
+    "lng": -98.4936,
+    "rent": {
+      "studio": 764,
+      "oneBed": 979,
+      "twoBed": 1250,
+      "threeBed": 1527,
+      "fourBed": 1889
+    }
   },
   {
     "slug": "san-diego-ca",
@@ -117,7 +166,14 @@
     "medianHomePrice": 895000,
     "population": 3338000,
     "lat": 32.7157,
-    "lng": -117.1611
+    "lng": -117.1611,
+    "rent": {
+      "studio": 1712,
+      "oneBed": 2195,
+      "twoBed": 2750,
+      "threeBed": 3424,
+      "fourBed": 4236
+    }
   },
   {
     "slug": "dallas-tx",
@@ -132,7 +188,14 @@
     "medianHomePrice": 375000,
     "population": 8344000,
     "lat": 32.7767,
-    "lng": -96.797
+    "lng": -96.797,
+    "rent": {
+      "studio": 1086,
+      "oneBed": 1392,
+      "twoBed": 1860,
+      "threeBed": 2172,
+      "fourBed": 2687
+    }
   },
   {
     "slug": "san-jose-ca",
@@ -147,7 +210,14 @@
     "medianHomePrice": 1626000,
     "population": 1991000,
     "lat": 37.3382,
-    "lng": -121.8863
+    "lng": -121.8863,
+    "rent": {
+      "studio": 1996,
+      "oneBed": 2559,
+      "twoBed": 3307,
+      "threeBed": 3992,
+      "fourBed": 4939
+    }
   },
   {
     "slug": "austin-tx",
@@ -162,7 +232,14 @@
     "medianHomePrice": 400000,
     "population": 2473000,
     "lat": 30.2672,
-    "lng": -97.7431
+    "lng": -97.7431,
+    "rent": {
+      "studio": 1208,
+      "oneBed": 1549,
+      "twoBed": 2018,
+      "threeBed": 2416,
+      "fourBed": 2990
+    }
   },
   {
     "slug": "jacksonville-fl",
@@ -177,7 +254,14 @@
     "medianHomePrice": 282000,
     "population": 1560000,
     "lat": 30.3322,
-    "lng": -81.6557
+    "lng": -81.6557,
+    "rent": {
+      "studio": 972,
+      "oneBed": 1246,
+      "twoBed": 1379,
+      "threeBed": 1944,
+      "fourBed": 2405
+    }
   },
   {
     "slug": "columbus-oh",
@@ -192,7 +276,14 @@
     "medianHomePrice": 290000,
     "population": 2122000,
     "lat": 39.9612,
-    "lng": -82.9988
+    "lng": -82.9988,
+    "rent": {
+      "studio": 929,
+      "oneBed": 1191,
+      "twoBed": 1400,
+      "threeBed": 1858,
+      "fourBed": 2299
+    }
   },
   {
     "slug": "charlotte-nc",
@@ -207,7 +298,14 @@
     "medianHomePrice": 398000,
     "population": 2637000,
     "lat": 35.2271,
-    "lng": -80.8431
+    "lng": -80.8431,
+    "rent": {
+      "studio": 1123,
+      "oneBed": 1440,
+      "twoBed": 1690,
+      "threeBed": 2246,
+      "fourBed": 2779
+    }
   },
   {
     "slug": "indianapolis-in",
@@ -222,7 +320,14 @@
     "medianHomePrice": 224000,
     "population": 1925000,
     "lat": 39.7684,
-    "lng": -86.1581
+    "lng": -86.1581,
+    "rent": {
+      "studio": 796,
+      "oneBed": 1020,
+      "twoBed": 1230,
+      "threeBed": 1591,
+      "fourBed": 1969
+    }
   },
   {
     "slug": "san-francisco-ca",
@@ -237,7 +342,14 @@
     "medianHomePrice": 1181000,
     "population": 4732000,
     "lat": 37.7749,
-    "lng": -122.4194
+    "lng": -122.4194,
+    "rent": {
+      "studio": 2852,
+      "oneBed": 3657,
+      "twoBed": 4995,
+      "threeBed": 5705,
+      "fourBed": 7058
+    }
   },
   {
     "slug": "seattle-wa",
@@ -252,7 +364,14 @@
     "medianHomePrice": 728000,
     "population": 3980000,
     "lat": 47.6062,
-    "lng": -122.3321
+    "lng": -122.3321,
+    "rent": {
+      "studio": 1511,
+      "oneBed": 1937,
+      "twoBed": 2579,
+      "threeBed": 3022,
+      "fourBed": 3738
+    }
   },
   {
     "slug": "denver-co",
@@ -267,7 +386,14 @@
     "medianHomePrice": 570000,
     "population": 3000000,
     "lat": 39.7392,
-    "lng": -104.9903
+    "lng": -104.9903,
+    "rent": {
+      "studio": 1248,
+      "oneBed": 1600,
+      "twoBed": 2100,
+      "threeBed": 2496,
+      "fourBed": 3088
+    }
   },
   {
     "slug": "washington-dc",
@@ -282,7 +408,14 @@
     "medianHomePrice": 620000,
     "population": 6300000,
     "lat": 38.9072,
-    "lng": -77.0369
+    "lng": -77.0369,
+    "rent": {
+      "studio": 1677,
+      "oneBed": 2150,
+      "twoBed": 3050,
+      "threeBed": 3354,
+      "fourBed": 4150
+    }
   },
   {
     "slug": "nashville-tn",
@@ -297,7 +430,14 @@
     "medianHomePrice": 460000,
     "population": 2150000,
     "lat": 36.1627,
-    "lng": -86.7816
+    "lng": -86.7816,
+    "rent": {
+      "studio": 1170,
+      "oneBed": 1500,
+      "twoBed": 1950,
+      "threeBed": 2340,
+      "fourBed": 2895
+    }
   },
   {
     "slug": "oklahoma-city-ok",
@@ -312,7 +452,14 @@
     "medianHomePrice": 260000,
     "population": 1500000,
     "lat": 35.4676,
-    "lng": -97.5164
+    "lng": -97.5164,
+    "rent": {
+      "studio": 733,
+      "oneBed": 940,
+      "twoBed": 1120,
+      "threeBed": 1466,
+      "fourBed": 1814
+    }
   },
   {
     "slug": "el-paso-tx",
@@ -327,7 +474,14 @@
     "medianHomePrice": 225000,
     "population": 870000,
     "lat": 31.7619,
-    "lng": -106.485
+    "lng": -106.485,
+    "rent": {
+      "studio": 741,
+      "oneBed": 950,
+      "twoBed": 1150,
+      "threeBed": 1482,
+      "fourBed": 1834
+    }
   },
   {
     "slug": "boston-ma",
@@ -342,7 +496,14 @@
     "medianHomePrice": 825000,
     "population": 4370000,
     "lat": 42.3601,
-    "lng": -71.0589
+    "lng": -71.0589,
+    "rent": {
+      "studio": 2301,
+      "oneBed": 2950,
+      "twoBed": 3600,
+      "threeBed": 4602,
+      "fourBed": 5694
+    }
   },
   {
     "slug": "portland-or",
@@ -357,7 +518,14 @@
     "medianHomePrice": 510000,
     "population": 2540000,
     "lat": 45.5152,
-    "lng": -122.6784
+    "lng": -122.6784,
+    "rent": {
+      "studio": 1209,
+      "oneBed": 1550,
+      "twoBed": 1850,
+      "threeBed": 2418,
+      "fourBed": 2992
+    }
   },
   {
     "slug": "las-vegas-nv",
@@ -372,7 +540,14 @@
     "medianHomePrice": 450000,
     "population": 2300000,
     "lat": 36.1699,
-    "lng": -115.1398
+    "lng": -115.1398,
+    "rent": {
+      "studio": 936,
+      "oneBed": 1200,
+      "twoBed": 1500,
+      "threeBed": 1872,
+      "fourBed": 2316
+    }
   },
   {
     "slug": "memphis-tn",
@@ -387,7 +562,14 @@
     "medianHomePrice": 236000,
     "population": 1188000,
     "lat": 35.1495,
-    "lng": -90.049
+    "lng": -90.049,
+    "rent": {
+      "studio": 741,
+      "oneBed": 950,
+      "twoBed": 1020,
+      "threeBed": 1482,
+      "fourBed": 1834
+    }
   },
   {
     "slug": "louisville-ky",
@@ -402,7 +584,14 @@
     "medianHomePrice": 280000,
     "population": 1394000,
     "lat": 38.2527,
-    "lng": -85.7585
+    "lng": -85.7585,
+    "rent": {
+      "studio": 819,
+      "oneBed": 1050,
+      "twoBed": 1280,
+      "threeBed": 1638,
+      "fourBed": 2027
+    }
   },
   {
     "slug": "baltimore-md",
@@ -417,7 +606,14 @@
     "medianHomePrice": 367000,
     "population": 2387000,
     "lat": 39.2904,
-    "lng": -76.6122
+    "lng": -76.6122,
+    "rent": {
+      "studio": 975,
+      "oneBed": 1250,
+      "twoBed": 1610,
+      "threeBed": 1950,
+      "fourBed": 2413
+    }
   },
   {
     "slug": "milwaukee-wi",
@@ -432,7 +628,14 @@
     "medianHomePrice": 290000,
     "population": 1560000,
     "lat": 43.0389,
-    "lng": -87.9065
+    "lng": -87.9065,
+    "rent": {
+      "studio": 936,
+      "oneBed": 1200,
+      "twoBed": 1500,
+      "threeBed": 1872,
+      "fourBed": 2316
+    }
   },
   {
     "slug": "tucson-az",
@@ -447,7 +650,14 @@
     "medianHomePrice": 360000,
     "population": 1087000,
     "lat": 32.2226,
-    "lng": -110.9747
+    "lng": -110.9747,
+    "rent": {
+      "studio": 780,
+      "oneBed": 1000,
+      "twoBed": 1300,
+      "threeBed": 1560,
+      "fourBed": 1930
+    }
   },
   {
     "slug": "fresno-ca",
@@ -462,7 +672,14 @@
     "medianHomePrice": 395000,
     "population": 1190000,
     "lat": 36.7378,
-    "lng": -119.7871
+    "lng": -119.7871,
+    "rent": {
+      "studio": 1014,
+      "oneBed": 1300,
+      "twoBed": 1550,
+      "threeBed": 2028,
+      "fourBed": 2509
+    }
   },
   {
     "slug": "sacramento-ca",
@@ -470,14 +687,21 @@
     "fullName": "Sacramento, CA",
     "state": "california",
     "stateCode": "CA",
-    "rpp": 106.670,
+    "rpp": 106.67,
     "rppHousing": 130.2,
     "averageRent1BR": 1600,
     "averageRent2BR": 1950,
     "medianHomePrice": 525000,
     "population": 2400000,
     "lat": 38.5816,
-    "lng": -121.4944
+    "lng": -121.4944,
+    "rent": {
+      "studio": 1248,
+      "oneBed": 1600,
+      "twoBed": 1950,
+      "threeBed": 2496,
+      "fourBed": 3088
+    }
   },
   {
     "slug": "kansas-city-mo",
@@ -492,7 +716,14 @@
     "medianHomePrice": 300000,
     "population": 2254000,
     "lat": 39.0997,
-    "lng": -94.5786
+    "lng": -94.5786,
+    "rent": {
+      "studio": 897,
+      "oneBed": 1150,
+      "twoBed": 1400,
+      "threeBed": 1794,
+      "fourBed": 2220
+    }
   },
   {
     "slug": "atlanta-ga",
@@ -507,7 +738,14 @@
     "medianHomePrice": 411000,
     "population": 6272000,
     "lat": 33.749,
-    "lng": -84.388
+    "lng": -84.388,
+    "rent": {
+      "studio": 1271,
+      "oneBed": 1630,
+      "twoBed": 2020,
+      "threeBed": 2543,
+      "fourBed": 3146
+    }
   },
   {
     "slug": "omaha-ne",
@@ -522,7 +760,14 @@
     "medianHomePrice": 290000,
     "population": 968000,
     "lat": 41.2565,
-    "lng": -95.9345
+    "lng": -95.9345,
+    "rent": {
+      "studio": 858,
+      "oneBed": 1100,
+      "twoBed": 1400,
+      "threeBed": 1716,
+      "fourBed": 2123
+    }
   },
   {
     "slug": "colorado-springs-co",
@@ -537,7 +782,14 @@
     "medianHomePrice": 475000,
     "population": 760000,
     "lat": 38.8339,
-    "lng": -104.8214
+    "lng": -104.8214,
+    "rent": {
+      "studio": 1030,
+      "oneBed": 1320,
+      "twoBed": 1580,
+      "threeBed": 2059,
+      "fourBed": 2548
+    }
   },
   {
     "slug": "raleigh-nc",
@@ -552,7 +804,14 @@
     "medianHomePrice": 431000,
     "population": 1661000,
     "lat": 35.7796,
-    "lng": -78.6382
+    "lng": -78.6382,
+    "rent": {
+      "studio": 967,
+      "oneBed": 1240,
+      "twoBed": 1520,
+      "threeBed": 1934,
+      "fourBed": 2393
+    }
   },
   {
     "slug": "miami-fl",
@@ -567,7 +826,14 @@
     "medianHomePrice": 575000,
     "population": 6372000,
     "lat": 25.7617,
-    "lng": -80.1918
+    "lng": -80.1918,
+    "rent": {
+      "studio": 1872,
+      "oneBed": 2400,
+      "twoBed": 3030,
+      "threeBed": 3744,
+      "fourBed": 4632
+    }
   },
   {
     "slug": "minneapolis-mn",
@@ -582,7 +848,14 @@
     "medianHomePrice": 327000,
     "population": 3039000,
     "lat": 44.9778,
-    "lng": -93.265
+    "lng": -93.265,
+    "rent": {
+      "studio": 1037,
+      "oneBed": 1330,
+      "twoBed": 1750,
+      "threeBed": 2075,
+      "fourBed": 2567
+    }
   },
   {
     "slug": "tampa-fl",
@@ -590,14 +863,21 @@
     "fullName": "Tampa, FL",
     "state": "florida",
     "stateCode": "FL",
-    "rpp": 100.890,
+    "rpp": 100.89,
     "rppHousing": 125.8,
     "averageRent1BR": 1500,
     "averageRent2BR": 1750,
     "medianHomePrice": 374000,
     "population": 3040000,
     "lat": 27.9506,
-    "lng": -82.4572
+    "lng": -82.4572,
+    "rent": {
+      "studio": 1170,
+      "oneBed": 1500,
+      "twoBed": 1750,
+      "threeBed": 2340,
+      "fourBed": 2895
+    }
   },
   {
     "slug": "new-orleans-la",
@@ -612,7 +892,14 @@
     "medianHomePrice": 243000,
     "population": 1030000,
     "lat": 29.9511,
-    "lng": -90.0715
+    "lng": -90.0715,
+    "rent": {
+      "studio": 1100,
+      "oneBed": 1410,
+      "twoBed": 1710,
+      "threeBed": 2200,
+      "fourBed": 2721
+    }
   },
   {
     "slug": "virginia-beach-va",
@@ -627,7 +914,14 @@
     "medianHomePrice": 340000,
     "population": 1769000,
     "lat": 36.8529,
-    "lng": -75.978
+    "lng": -75.978,
+    "rent": {
+      "studio": 1271,
+      "oneBed": 1630,
+      "twoBed": 1830,
+      "threeBed": 2543,
+      "fourBed": 3146
+    }
   },
   {
     "slug": "honolulu-hi",
@@ -642,7 +936,14 @@
     "medianHomePrice": 1142000,
     "population": 999000,
     "lat": 21.3069,
-    "lng": -157.8583
+    "lng": -157.8583,
+    "rent": {
+      "studio": 1724,
+      "oneBed": 2210,
+      "twoBed": 3080,
+      "threeBed": 3448,
+      "fourBed": 4265
+    }
   },
   {
     "slug": "st-louis-mo",
@@ -657,7 +958,14 @@
     "medianHomePrice": 235000,
     "population": 2820000,
     "lat": 38.627,
-    "lng": -90.1994
+    "lng": -90.1994,
+    "rent": {
+      "studio": 772,
+      "oneBed": 990,
+      "twoBed": 1330,
+      "threeBed": 1544,
+      "fourBed": 1911
+    }
   },
   {
     "slug": "pittsburgh-pa",
@@ -672,7 +980,14 @@
     "medianHomePrice": 252000,
     "population": 2371000,
     "lat": 40.4406,
-    "lng": -79.9959
+    "lng": -79.9959,
+    "rent": {
+      "studio": 1006,
+      "oneBed": 1290,
+      "twoBed": 1560,
+      "threeBed": 2012,
+      "fourBed": 2490
+    }
   },
   {
     "slug": "cincinnati-oh",
@@ -680,14 +995,21 @@
     "fullName": "Cincinnati, OH",
     "state": "ohio",
     "stateCode": "OH",
-    "rpp": 95.370,
+    "rpp": 95.37,
     "rppHousing": 87.6,
     "averageRent1BR": 1080,
     "averageRent2BR": 1440,
     "medianHomePrice": 260000,
     "population": 2257000,
     "lat": 39.1031,
-    "lng": -84.512
+    "lng": -84.512,
+    "rent": {
+      "studio": 842,
+      "oneBed": 1080,
+      "twoBed": 1440,
+      "threeBed": 1685,
+      "fourBed": 2084
+    }
   },
   {
     "slug": "orlando-fl",
@@ -702,7 +1024,14 @@
     "medianHomePrice": 385000,
     "population": 2941000,
     "lat": 28.5383,
-    "lng": -81.3792
+    "lng": -81.3792,
+    "rent": {
+      "studio": 1139,
+      "oneBed": 1460,
+      "twoBed": 1740,
+      "threeBed": 2278,
+      "fourBed": 2818
+    }
   },
   {
     "slug": "salt-lake-city-ut",
@@ -717,7 +1046,14 @@
     "medianHomePrice": 572000,
     "population": 1301000,
     "lat": 40.7608,
-    "lng": -111.891
+    "lng": -111.891,
+    "rent": {
+      "studio": 936,
+      "oneBed": 1200,
+      "twoBed": 1540,
+      "threeBed": 1872,
+      "fourBed": 2316
+    }
   },
   {
     "slug": "birmingham-al",
@@ -732,7 +1068,14 @@
     "medianHomePrice": 230000,
     "population": 1115000,
     "lat": 33.5207,
-    "lng": -86.8025
+    "lng": -86.8025,
+    "rent": {
+      "studio": 819,
+      "oneBed": 1050,
+      "twoBed": 1150,
+      "threeBed": 1638,
+      "fourBed": 2027
+    }
   },
   {
     "slug": "richmond-va",
@@ -747,7 +1090,14 @@
     "medianHomePrice": 360000,
     "population": 1370000,
     "lat": 37.5407,
-    "lng": -77.436
+    "lng": -77.436,
+    "rent": {
+      "studio": 1115,
+      "oneBed": 1430,
+      "twoBed": 1600,
+      "threeBed": 2231,
+      "fourBed": 2760
+    }
   },
   {
     "slug": "boise-id",
@@ -762,6 +1112,13 @@
     "medianHomePrice": 500000,
     "population": 846000,
     "lat": 43.615,
-    "lng": -116.2023
+    "lng": -116.2023,
+    "rent": {
+      "studio": 998,
+      "oneBed": 1280,
+      "twoBed": 1450,
+      "threeBed": 1997,
+      "fourBed": 2470
+    }
   }
 ]

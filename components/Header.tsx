@@ -24,6 +24,12 @@ export default function Header() {
           <Link href="/relocate" className="hover:text-blue-600 transition-colors">
             Relocate
           </Link>
+          <Link href="/afford" className="hover:text-blue-600 transition-colors">
+            Afford
+          </Link>
+          <Link href="/freelance" className="hover:text-blue-600 transition-colors">
+            1099 vs W2
+          </Link>
           <Link href="/blog" className="hover:text-blue-600 transition-colors">
             Blog
           </Link>
@@ -59,6 +65,12 @@ export default function Header() {
           </Link>
           <Link href="/relocate" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
             Relocate
+          </Link>
+          <Link href="/afford" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
+            Afford
+          </Link>
+          <Link href="/freelance" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
+            1099 vs W2
           </Link>
           <Link href="/blog" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
             Blog

@@ -3,6 +3,8 @@ import { getAllSlugs, getAllStateSlugs } from '@/lib/slug-generator';
 import { getAllBlogSlugs } from '@/lib/blog';
 import { getAllComparisonSlugs } from '@/lib/compare';
 import { getAllRelocationSlugs } from '@/lib/relocation-slugs';
+import { getAllFreelanceSlugs } from '@/lib/freelance-slugs';
+import { getAllAffordSlugs } from '@/lib/afford-slugs';
 
 export const dynamic = 'force-static';
 
@@ -52,6 +54,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const slug of getAllRelocationSlugs()) {
     pages.push({
       url: `${baseUrl}/relocate/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    });
+  }
+
+  pages.push({
+    url: `${baseUrl}/afford`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  });
+
+  for (const slug of getAllAffordSlugs()) {
+    pages.push({
+      url: `${baseUrl}/afford/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    });
+  }
+
+  pages.push({
+    url: `${baseUrl}/freelance`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  });
+
+  for (const slug of getAllFreelanceSlugs()) {
+    pages.push({
+      url: `${baseUrl}/freelance/${slug}`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,

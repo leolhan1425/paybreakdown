@@ -145,6 +145,32 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Relocating? */}
+      <section className="bg-white py-12 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-2xl font-bold text-gray-900">Thinking About Relocating?</h2>
+              <p className="text-gray-600 text-sm mt-1">See what salary you&apos;d need in a new city to maintain your lifestyle.</p>
+            </div>
+            <Link href="/relocate" className="text-sm text-blue-600 hover:text-blue-800 font-medium">Calculator &rarr;</Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { label: 'NYC \u2192 Miami', href: '/relocate/new-york-ny-to-miami-fl', desc: 'Cost of living 10% lower' },
+              { label: 'SF \u2192 Austin', href: '/relocate/san-francisco-ca-to-austin-tx', desc: 'Cost of living 16% lower' },
+              { label: 'Chicago \u2192 Nashville', href: '/relocate/chicago-il-to-nashville-tn', desc: 'Cost of living 6% lower' },
+              { label: 'LA \u2192 Phoenix', href: '/relocate/los-angeles-ca-to-phoenix-az', desc: 'Cost of living 14% lower' },
+            ].map(card => (
+              <Link key={card.href} href={card.href} className="bg-gray-50 border border-gray-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-sm transition-all">
+                <p className="font-semibold text-gray-900 text-sm">{card.label}</p>
+                <p className="text-xs text-gray-500 mt-1">{card.desc}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* From the Blog */}
       <section className="bg-white py-12 border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-4">

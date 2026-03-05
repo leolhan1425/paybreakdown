@@ -92,6 +92,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                   <li><Link href="/blog/salary-vs-hourly" className="text-sm hover:text-white transition-colors">Salary vs Hourly</Link></li>
                   <li><Link href="/compare/texas-vs-california" className="text-sm hover:text-white transition-colors">Texas vs California</Link></li>
                   <li><Link href="/compare/new-york-vs-florida" className="text-sm hover:text-white transition-colors">New York vs Florida</Link></li>
+                  <li><Link href="/relocate" className="text-sm hover:text-white transition-colors">Relocation Calculator</Link></li>
+                  <li><Link href="/relocate/new-york-ny-to-miami-fl" className="text-sm hover:text-white transition-colors">NYC to Miami</Link></li>
+                  <li><Link href="/relocate/san-francisco-ca-to-austin-tx" className="text-sm hover:text-white transition-colors">SF to Austin</Link></li>
                   <li><Link href="/blog" className="text-sm hover:text-white transition-colors">All Blog Posts</Link></li>
                 </ul>
               </div>

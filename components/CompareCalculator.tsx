@@ -17,9 +17,10 @@ interface Props {
   initialPeriod?: 'hourly' | 'annual';
 }
 
+const MAX_STATES = 5;
+
 export default function CompareCalculator({ initialStateA, initialStateB, initialAmount = 75000, initialPeriod = 'annual' }: Props) {
-  const [stateCodeA, setStateCodeA] = useState(initialStateA);
-  const [stateCodeB, setStateCodeB] = useState(initialStateB);
+  const [stateCodes, setStateCodes] = useState<string[]>([initialStateA, initialStateB]);
   const [amount, setAmount] = useState(initialAmount);
   const [period, setPeriod] = useState<'hourly' | 'annual'>(initialPeriod);
   const [filingStatus, setFilingStatus] = useState<'single' | 'married'>('single');
@@ -27,11 +28,11 @@ export default function CompareCalculator({ initialStateA, initialStateB, initia
     initialPeriod === 'annual' ? initialAmount.toLocaleString() : String(initialAmount)
   );
 
-  const resultA = calculateTakeHome({ amount, period, stateCode: stateCodeA, filingStatus });
-  const resultB = calculateTakeHome({ amount, period, stateCode: stateCodeB, filingStatus });
-  const diff = resultA.takeHome.annual - resultB.takeHome.annual;
-  const stateNameA = statesData.find(s => s.code === stateCodeA)?.name || stateCodeA;
-  const stateNameB = statesData.find(s => s.code === stateCodeB)?.name || stateCodeB;
+  const results = stateCodes.map(sc => calculateTakeHome({ amount, period, stateCode: sc, filingStatus }));
+  const stateNames = stateCodes.map(sc => statesData.find(s => s.code === sc)?.name || sc);
+
+  // Find the best take-home
+  const bestIdx = results.reduce((best, r, i) => r.takeHome.annual > results[best].takeHome.annual ? i : best, 0);
 
   const handleAmountChange = (value: string) => {
     const raw = value.replace(/[$,]/g, '');
@@ -43,22 +44,23 @@ export default function CompareCalculator({ initialStateA, initialStateB, initia
 
   const sorted = [...statesData].sort((a, b) => a.name.localeCompare(b.name));
 
-  function TaxRow({ label, valA, valB, isNeg = false, bold = false }: { label: string; valA: number; valB: number; isNeg?: boolean; bold?: boolean }) {
-    const cls = bold ? 'font-semibold' : '';
-    const colorA = isNeg ? 'text-red-600' : bold ? 'text-green-700' : 'text-gray-800';
-    const colorB = isNeg ? 'text-red-600' : bold ? 'text-green-700' : 'text-gray-800';
-    return (
-      <tr className="border-t border-gray-100">
-        <td className={`py-2 px-3 text-sm ${cls} text-gray-700`}>{label}</td>
-        <td className={`py-2 px-3 text-sm text-right tabular-nums ${cls} ${colorA}`}>
-          {isNeg ? `-${usd(-valA)}` : usd(valA)}
-        </td>
-        <td className={`py-2 px-3 text-sm text-right tabular-nums ${cls} ${colorB}`}>
-          {isNeg ? `-${usd(-valB)}` : usd(valB)}
-        </td>
-      </tr>
-    );
-  }
+  const addState = () => {
+    if (stateCodes.length >= MAX_STATES) return;
+    // Pick a state not already selected
+    const unused = sorted.find(s => !stateCodes.includes(s.code));
+    if (unused) setStateCodes([...stateCodes, unused.code]);
+  };
+
+  const removeState = (idx: number) => {
+    if (stateCodes.length <= 2) return;
+    setStateCodes(stateCodes.filter((_, i) => i !== idx));
+  };
+
+  const updateState = (idx: number, code: string) => {
+    const next = [...stateCodes];
+    next[idx] = code;
+    setStateCodes(next);
+  };
 
   return (
     <div>
@@ -94,19 +96,42 @@ export default function CompareCalculator({ initialStateA, initialStateB, initia
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div>
-            <label className="block text-sm text-gray-500 mb-1">State A</label>
-            <select value={stateCodeA} onChange={e => setStateCodeA(e.target.value)} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm bg-white">
-              {sorted.map(s => <option key={s.code} value={s.code}>{s.name}</option>)}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm text-gray-500 mb-1">State B</label>
-            <select value={stateCodeB} onChange={e => setStateCodeB(e.target.value)} className="w-full px-3 py-2.5 border border-gray-200 rounded-lg text-sm bg-white">
-              {sorted.map(s => <option key={s.code} value={s.code}>{s.name}</option>)}
-            </select>
-          </div>
+        {/* State selectors */}
+        <div className="space-y-3 mb-4">
+          <label className="block text-sm text-gray-500">States to compare</label>
+          {stateCodes.map((sc, idx) => (
+            <div key={idx} className="flex items-center gap-2">
+              <select
+                value={sc}
+                onChange={e => updateState(idx, e.target.value)}
+                className="flex-1 px-3 py-2.5 border border-gray-200 rounded-lg text-sm bg-white"
+              >
+                {sorted.map(s => <option key={s.code} value={s.code}>{s.name}</option>)}
+              </select>
+              {stateCodes.length > 2 && (
+                <button
+                  onClick={() => removeState(idx)}
+                  className="p-2 text-gray-400 hover:text-red-500 transition-colors"
+                  aria-label={`Remove ${stateNames[idx]}`}
+                >
+                  <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
+                  </svg>
+                </button>
+              )}
+            </div>
+          ))}
+          {stateCodes.length < MAX_STATES && (
+            <button
+              onClick={addState}
+              className="text-sm text-blue-600 hover:text-blue-800 font-medium flex items-center gap-1"
+            >
+              <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clipRule="evenodd" />
+              </svg>
+              Add state ({stateCodes.length}/{MAX_STATES})
+            </button>
+          )}
         </div>
 
         <div>
@@ -127,14 +152,17 @@ export default function CompareCalculator({ initialStateA, initialStateB, initia
         </div>
       </div>
 
-      {/* Difference callout */}
-      {diff !== 0 && (
-        <div className={`rounded-xl p-5 mb-6 text-center ${diff > 0 ? 'bg-green-50 border border-green-200' : 'bg-blue-50 border border-blue-200'}`}>
+      {/* Winner callout */}
+      {stateCodes.length >= 2 && (
+        <div className="rounded-xl p-5 mb-6 text-center bg-green-50 border border-green-200">
           <p className="text-2xl font-bold text-gray-900 mb-1">
-            You keep {usd(Math.abs(diff))} more in {diff > 0 ? stateNameA : stateNameB}
+            You keep the most in {stateNames[bestIdx]}
           </p>
           <p className="text-sm text-gray-600">
-            That&apos;s {usd(Math.round(Math.abs(diff) / 12))}/month or {usd(Math.round(Math.abs(diff) / 52))}/week
+            Take-home: {usd(results[bestIdx].takeHome.annual)}/year
+            {results.length > 1 && (
+              <> &mdash; {usd(results[bestIdx].takeHome.annual - Math.min(...results.map(r => r.takeHome.annual)))}/year more than the lowest</>
+            )}
           </p>
         </div>
       )}
@@ -145,30 +173,54 @@ export default function CompareCalculator({ initialStateA, initialStateB, initia
           <thead>
             <tr className="bg-gray-50 text-gray-500 text-xs uppercase tracking-wide">
               <th className="text-left py-3 px-3 font-medium">Category</th>
-              <th className="text-right py-3 px-3 font-medium">{stateNameA}</th>
-              <th className="text-right py-3 px-3 font-medium">{stateNameB}</th>
+              {stateNames.map((name, i) => (
+                <th key={i} className="text-right py-3 px-3 font-medium">
+                  {name}
+                  {i === bestIdx && <span className="ml-1 text-green-600">&#9733;</span>}
+                </th>
+              ))}
             </tr>
           </thead>
           <tbody>
-            <TaxRow label="Gross Pay" valA={resultA.gross.annual} valB={resultB.gross.annual} />
-            <TaxRow label="Federal Income Tax" valA={-resultA.federalIncomeTax} valB={-resultB.federalIncomeTax} isNeg />
-            <TaxRow label="Social Security" valA={-resultA.socialSecurityTax} valB={-resultB.socialSecurityTax} isNeg />
-            <TaxRow label="Medicare" valA={-resultA.medicareTax} valB={-resultB.medicareTax} isNeg />
-            <TaxRow label={`State Tax`} valA={-resultA.stateIncomeTax} valB={-resultB.stateIncomeTax} isNeg />
+            <Row label="Gross Pay" values={results.map(r => r.gross.annual)} />
+            <Row label="Federal Income Tax" values={results.map(r => -r.federalIncomeTax)} isNeg />
+            <Row label="Social Security" values={results.map(r => -r.socialSecurityTax)} isNeg />
+            <Row label="Medicare" values={results.map(r => -r.medicareTax)} isNeg />
+            <Row label="State Tax" values={results.map(r => -r.stateIncomeTax)} isNeg />
             <tr className="border-t-2 border-gray-300">
               <td className="py-2 px-3 text-sm font-semibold text-gray-900">Total Tax</td>
-              <td className="py-2 px-3 text-sm text-right tabular-nums font-semibold text-red-600">-{usd(resultA.totalTax)}</td>
-              <td className="py-2 px-3 text-sm text-right tabular-nums font-semibold text-red-600">-{usd(resultB.totalTax)}</td>
+              {results.map((r, i) => (
+                <td key={i} className="py-2 px-3 text-sm text-right tabular-nums font-semibold text-red-600">-{usd(r.totalTax)}</td>
+              ))}
             </tr>
-            <TaxRow label="Take-Home Pay" valA={resultA.takeHome.annual} valB={resultB.takeHome.annual} bold />
+            <Row label="Take-Home Pay" values={results.map(r => r.takeHome.annual)} bold bestIdx={bestIdx} />
             <tr className="border-t border-gray-100">
               <td className="py-2 px-3 text-sm text-gray-500">Effective Rate</td>
-              <td className="py-2 px-3 text-sm text-right tabular-nums text-gray-500">{pct(resultA.effectiveRate)}</td>
-              <td className="py-2 px-3 text-sm text-right tabular-nums text-gray-500">{pct(resultB.effectiveRate)}</td>
+              {results.map((r, i) => (
+                <td key={i} className="py-2 px-3 text-sm text-right tabular-nums text-gray-500">{pct(r.effectiveRate)}</td>
+              ))}
             </tr>
           </tbody>
         </table>
       </div>
     </div>
+  );
+}
+
+function Row({ label, values, isNeg = false, bold = false, bestIdx }: { label: string; values: number[]; isNeg?: boolean; bold?: boolean; bestIdx?: number }) {
+  const cls = bold ? 'font-semibold' : '';
+  return (
+    <tr className="border-t border-gray-100">
+      <td className={`py-2 px-3 text-sm ${cls} text-gray-700`}>{label}</td>
+      {values.map((val, i) => {
+        const isBest = bold && bestIdx === i;
+        const color = isNeg ? 'text-red-600' : isBest ? 'text-green-700' : bold ? 'text-green-700' : 'text-gray-800';
+        return (
+          <td key={i} className={`py-2 px-3 text-sm text-right tabular-nums ${cls} ${color}`}>
+            {isNeg ? `-${usd(-val)}` : usd(val)}
+          </td>
+        );
+      })}
+    </tr>
   );
 }

@@ -21,6 +21,9 @@ export default function Header() {
           <Link href="/#states" className="hover:text-blue-600 transition-colors">
             By State
           </Link>
+          <Link href="/relocate" className="hover:text-blue-600 transition-colors">
+            Relocate
+          </Link>
           <Link href="/blog" className="hover:text-blue-600 transition-colors">
             Blog
           </Link>
@@ -53,6 +56,9 @@ export default function Header() {
           </Link>
           <Link href="/#states" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
             By State
+          </Link>
+          <Link href="/relocate" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
+            Relocate
           </Link>
           <Link href="/blog" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
             Blog

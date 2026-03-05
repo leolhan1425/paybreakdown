@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://paybreakdown.com/sitemap.xml
+Sitemap: https://salaryhog.com/sitemap.xml

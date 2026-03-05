@@ -6,8 +6,9 @@ import { breadcrumbSchema, webAppSchema } from '@/lib/structured-data';
 import SalaryPageClient from '@/components/SalaryPageClient';
 import SEOContent from '@/components/SEOContent';
 import Breadcrumb from '@/components/Breadcrumb';
+import MonetizationBlock from '@/components/MonetizationBlock';
 
-const BASE_URL = 'https://paybreakdown.com';
+const BASE_URL = 'https://salaryhog.com';
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -136,6 +137,12 @@ export default async function SalaryPage({ params }: PageProps) {
         <Breadcrumb items={breadcrumbItems} />
         <h1 className="text-3xl font-bold text-gray-900 mb-6">{h1}</h1>
         <SalaryPageClient initialResult={initialResult} initialParsed={normalizedParsed} />
+        <MonetizationBlock
+          result={initialResult}
+          stateCode={stateCode}
+          stateName={parsed.stateName || 'Wyoming'}
+          stateSlug={parsed.stateSlug || 'wyoming'}
+        />
         <SEOContent parsed={normalizedParsed} initialResult={initialResult} />
       </main>
     </>

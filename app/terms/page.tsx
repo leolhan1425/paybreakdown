@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service — PayBreakdown',
-  description: 'PayBreakdown terms of service.',
+  title: 'Terms of Service — SalaryHog',
+  description: 'SalaryHog terms of service.',
 };
 
 export default function TermsPage() {
@@ -20,7 +20,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="font-semibold text-gray-900 text-base mb-2">Not Tax Advice</h2>
-          <p>The information provided by PayBreakdown does not constitute tax, legal, or financial advice. Consult a qualified tax professional for advice specific to your situation.</p>
+          <p>The information provided by SalaryHog does not constitute tax, legal, or financial advice. Consult a qualified tax professional for advice specific to your situation.</p>
         </section>
 
         <section>
@@ -30,7 +30,7 @@ export default function TermsPage() {
 
         <section>
           <h2 className="font-semibold text-gray-900 text-base mb-2">Use of Service</h2>
-          <p>PayBreakdown is provided free of charge for personal, non-commercial use. You may not scrape, copy, or redistribute the site&apos;s content or data without permission.</p>
+          <p>SalaryHog is provided free of charge for personal, non-commercial use. You may not scrape, copy, or redistribute the site&apos;s content or data without permission.</p>
         </section>
       </div>
     </main>

@@ -27,10 +27,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: `${state.name} Salary Calculator — Take-Home Pay 2025`,
     description: `Calculate your take-home pay in ${state.name}. ${noTax ? 'No state income tax. ' : ''}Free 2025 calculator with federal tax breakdown for any salary.`,
-    alternates: { canonical: `https://paybreakdown.com/${stateSlug}` },
+    alternates: { canonical: `https://salaryhog.com/${stateSlug}` },
     openGraph: {
-      url: `https://paybreakdown.com/${stateSlug}`,
-      images: [{ url: 'https://paybreakdown.com/og-image.svg', width: 1200, height: 630 }],
+      url: `https://salaryhog.com/${stateSlug}`,
+      images: [{ url: 'https://salaryhog.com/og-image.svg', width: 1200, height: 630 }],
     },
   };
 }
@@ -107,7 +107,7 @@ export default async function StatePage({ params }: PageProps) {
 
   const badge = getTaxBadge(state);
   const summary = getStateSummary(state);
-  const baseUrl = 'https://paybreakdown.com';
+  const baseUrl = 'https://salaryhog.com';
 
   return (
     <>

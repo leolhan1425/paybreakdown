@@ -1,4 +1,4 @@
-# PayBreakdown
+# SalaryHog
 
 Free salary and take-home pay calculator for all 50 US states.
 

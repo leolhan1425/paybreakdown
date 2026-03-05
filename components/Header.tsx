@@ -10,7 +10,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
       <div className="max-w-5xl mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold text-blue-600 tracking-tight">
-          PayBreakdown
+          SalaryHog
         </Link>
 
         {/* Desktop nav */}
@@ -20,6 +20,9 @@ export default function Header() {
           </Link>
           <Link href="/#states" className="hover:text-blue-600 transition-colors">
             By State
+          </Link>
+          <Link href="/blog" className="hover:text-blue-600 transition-colors">
+            Blog
           </Link>
           <Link href="/about" className="hover:text-blue-600 transition-colors">
             About
@@ -50,6 +53,9 @@ export default function Header() {
           </Link>
           <Link href="/#states" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
             By State
+          </Link>
+          <Link href="/blog" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
+            Blog
           </Link>
           <Link href="/about" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
             About

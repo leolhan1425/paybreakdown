@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { calculateTakeHome } from '@/lib/tax-engine';
 import { buildSlug } from '@/lib/slug-generator';
+import { getAllPosts } from '@/lib/blog';
 import HomepageCalculator from '@/components/HomepageCalculator';
 import FAQAccordion from '@/components/FAQAccordion';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
@@ -140,6 +141,29 @@ export default function HomePage() {
                 </Link>
               );
             })}
+          </div>
+        </div>
+      </section>
+
+      {/* From the Blog */}
+      <section className="bg-white py-12 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-4">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold text-gray-900">From the Blog</h2>
+            <Link href="/blog" className="text-sm text-blue-600 hover:text-blue-800 font-medium">View all →</Link>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {getAllPosts().slice(0, 3).map(post => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-sm transition-all"
+              >
+                <h3 className="font-semibold text-gray-900 text-sm mb-2 leading-snug">{post.title}</h3>
+                <p className="text-xs text-gray-500 line-clamp-2">{post.excerpt}</p>
+                <p className="text-xs text-gray-400 mt-3">{post.readingTime} min read</p>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

@@ -16,4 +16,4 @@ rsync -avz --delete -e "ssh $SSH_OPTS" out/ "$VPS:$REMOTE_DIR/out/"
 echo "Setting permissions..."
 ssh $SSH_OPTS "$VPS" "chown -R bctracker:bctracker $REMOTE_DIR"
 
-echo "Done. Site live at https://pay.hanlabnw.com"
+echo "Done. Site live at https://salaryhog.com"

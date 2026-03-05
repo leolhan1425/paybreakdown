@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — PayBreakdown',
-  description: 'PayBreakdown privacy policy.',
+  title: 'Privacy Policy — SalaryHog',
+  description: 'SalaryHog privacy policy.',
 };
 
 export default function PrivacyPage() {
@@ -25,7 +25,7 @@ export default function PrivacyPage() {
 
         <section>
           <h2 className="font-semibold text-gray-900 text-base mb-2">Personal Information</h2>
-          <p>We do not collect or store personal information. No account creation is required to use PayBreakdown.</p>
+          <p>We do not collect or store personal information. No account creation is required to use SalaryHog.</p>
         </section>
 
         <section>

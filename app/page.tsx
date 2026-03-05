@@ -5,6 +5,7 @@ import { getAllPosts } from '@/lib/blog';
 import HomepageCalculator from '@/components/HomepageCalculator';
 import FAQAccordion from '@/components/FAQAccordion';
 import ScrollToTopButton from '@/components/ScrollToTopButton';
+import EmailCapture from '@/components/EmailCapture';
 import { faqSchema, webAppSchema, websiteSchema } from '@/lib/structured-data';
 import statesData from '../data/states.json';
 
@@ -199,6 +200,13 @@ export default function HomePage() {
         <div className="max-w-3xl mx-auto px-4">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
           <FAQAccordion items={FAQ_ITEMS} />
+        </div>
+      </section>
+
+      {/* Email Capture */}
+      <section className="py-12">
+        <div className="max-w-2xl mx-auto px-4">
+          <EmailCapture />
         </div>
       </section>
 

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { getAllBlogSlugs, getPostBySlug } from '@/lib/blog';
 import { breadcrumbSchema } from '@/lib/structured-data';
+import EmailCapture from '@/components/EmailCapture';
 
 const BASE_URL = 'https://salaryhog.com';
 
@@ -90,6 +91,10 @@ export default async function BlogPost({ params }: PageProps) {
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
         </article>
+
+        <div className="mt-10">
+          <EmailCapture />
+        </div>
 
         <div className="mt-12 pt-8 border-t border-gray-200">
           <h2 className="text-lg font-bold text-gray-900 mb-4">More from SalaryHog</h2>

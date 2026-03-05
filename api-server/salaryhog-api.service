@@ -1,0 +1,15 @@
+[Unit]
+Description=SalaryHog API Server
+After=network.target
+
+[Service]
+Type=simple
+User=bctracker
+WorkingDirectory=/opt/paybreakdown/api-server
+ExecStart=/usr/bin/node /opt/paybreakdown/api-server/server.js
+Environment=DATA_DIR=/opt/paybreakdown/data
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -4,12 +4,15 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import statesData from '../data/states.json';
 import { calculateTakeHome, TaxResult } from '@/lib/tax-engine';
 import { ParsedSlug } from '@/lib/slug-generator';
+import { en } from '@/lib/i18n/en';
+import { es, stateNamesEs } from '@/lib/i18n/es';
 
 const NO_TAX_STATES = new Set(['AK', 'FL', 'NV', 'NH', 'SD', 'TN', 'TX', 'WA', 'WY']);
 
 interface Props {
   initialValues: ParsedSlug & { stateCode: string };
   onResultChange: (result: TaxResult, period: 'hourly' | 'annual') => void;
+  lang?: 'en' | 'es';
 }
 
 function formatDisplay(amount: number, period: 'hourly' | 'annual'): string {
@@ -17,7 +20,8 @@ function formatDisplay(amount: number, period: 'hourly' | 'annual'): string {
   return String(amount);
 }
 
-export default function Calculator({ initialValues, onResultChange }: Props) {
+export default function Calculator({ initialValues, onResultChange, lang = 'en' }: Props) {
+  const t = lang === 'es' ? es.calc : en.calc;
   const [period, setPeriod] = useState<'hourly' | 'annual'>(initialValues.period);
   const [amount, setAmount] = useState(initialValues.amount);
   const [stateCode, setStateCode] = useState(initialValues.stateCode);
@@ -39,7 +43,6 @@ export default function Calculator({ initialValues, onResultChange }: Props) {
     onResultChange(result, per);
   }, [onResultChange]);
 
-  // Trigger on mount so client state matches server
   useEffect(() => {
     recalculate(amount, period, stateCode, filingStatus, hoursPerWeek);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -89,6 +92,11 @@ export default function Calculator({ initialValues, onResultChange }: Props) {
     recalculate(amount, period, stateCode, filingStatus, hrs);
   };
 
+  const getStateName = (s: typeof statesData[0]) => {
+    if (lang === 'es') return stateNamesEs[s.slug] || s.name;
+    return s.name;
+  };
+
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
       {/* Period toggle */}
@@ -104,7 +112,7 @@ export default function Calculator({ initialValues, onResultChange }: Props) {
                   : 'text-gray-500 hover:text-gray-700'
               }`}
             >
-              {p === 'hourly' ? 'Hourly' : 'Annual'}
+              {p === 'hourly' ? t.hourly : t.annual}
             </button>
           ))}
         </div>
@@ -113,7 +121,7 @@ export default function Calculator({ initialValues, onResultChange }: Props) {
       {/* Amount input */}
       <div className="mb-5">
         <label className="block text-sm text-gray-500 mb-1">
-          {period === 'hourly' ? 'Hourly Rate' : 'Annual Salary'}
+          {period === 'hourly' ? t.hourlyRate : t.annualSalary}
         </label>
         <div className="relative">
           <span className="absolute left-4 top-1/2 -translate-y-1/2 text-2xl font-semibold text-gray-400">$</span>
@@ -132,7 +140,7 @@ export default function Calculator({ initialValues, onResultChange }: Props) {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
         {/* State dropdown */}
         <div>
-          <label className="block text-sm text-gray-500 mb-1">State</label>
+          <label className="block text-sm text-gray-500 mb-1">{t.state}</label>
           <select
             value={stateCode}
             onChange={e => handleStateChange(e.target.value)}
@@ -140,35 +148,35 @@ export default function Calculator({ initialValues, onResultChange }: Props) {
           >
             {statesData
               .slice()
-              .sort((a, b) => a.name.localeCompare(b.name))
+              .sort((a, b) => getStateName(a).localeCompare(getStateName(b)))
               .map(s => (
                 <option key={s.code} value={s.code}>
-                  {s.name}{NO_TAX_STATES.has(s.code) ? ' ★' : ''}
+                  {getStateName(s)}{NO_TAX_STATES.has(s.code) ? ' ★' : ''}
                 </option>
               ))}
           </select>
           {NO_TAX_STATES.has(stateCode) && (
             <span className="inline-block mt-1 text-xs text-green-700 bg-green-50 px-2 py-0.5 rounded-full">
-              No state income tax
+              {t.noStateTax}
             </span>
           )}
         </div>
 
         {/* Filing status */}
         <div>
-          <label className="block text-sm text-gray-500 mb-1">Filing Status</label>
+          <label className="block text-sm text-gray-500 mb-1">{t.filingStatus}</label>
           <div className="flex rounded-lg border border-gray-200 overflow-hidden">
             {(['single', 'married'] as const).map(fs => (
               <button
                 key={fs}
                 onClick={() => handleFilingStatusChange(fs)}
-                className={`flex-1 py-2.5 text-sm font-medium transition-colors capitalize ${
+                className={`flex-1 py-2.5 text-sm font-medium transition-colors ${
                   filingStatus === fs
                     ? 'bg-blue-600 text-white'
                     : 'bg-white text-gray-600 hover:bg-gray-50'
                 }`}
               >
-                {fs}
+                {fs === 'single' ? t.single : t.married}
               </button>
             ))}
           </div>
@@ -180,13 +188,13 @@ export default function Calculator({ initialValues, onResultChange }: Props) {
         onClick={() => setShowAdvanced(v => !v)}
         className="text-sm text-blue-600 hover:text-blue-800 font-medium"
       >
-        {showAdvanced ? '▲ Hide' : '▼ Advanced options'}
+        {showAdvanced ? `▲ ${t.advancedHide}` : `▼ ${t.advancedShow}`}
       </button>
 
       {showAdvanced && period === 'hourly' && (
         <div className="mt-4 pt-4 border-t border-gray-100">
           <label className="block text-sm text-gray-500 mb-2">
-            Hours per week: <span className="font-semibold text-gray-800">{hoursPerWeek}</span>
+            {t.hoursPerWeek}: <span className="font-semibold text-gray-800">{hoursPerWeek}</span>
           </label>
           <input
             type="range"

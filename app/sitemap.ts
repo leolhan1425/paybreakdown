@@ -5,6 +5,8 @@ import { getAllComparisonSlugs } from '@/lib/compare';
 import { getAllRelocationSlugs } from '@/lib/relocation-slugs';
 import { getAllFreelanceSlugs } from '@/lib/freelance-slugs';
 import { getAllAffordSlugs } from '@/lib/afford-slugs';
+import { getAllSpanishSlugs, englishToSpanishSlug } from '@/lib/spanish-slugs';
+import { getAllBlogSlugsEs } from '@/lib/blog-es';
 
 export const dynamic = 'force-static';
 
@@ -107,6 +109,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
+    });
+  }
+
+  // --- Spanish pages ---
+
+  pages.push({
+    url: `${baseUrl}/es`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  });
+
+  pages.push({
+    url: `${baseUrl}/es/blog`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  });
+
+  for (const slug of getAllBlogSlugsEs()) {
+    pages.push({
+      url: `${baseUrl}/es/blog/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    });
+  }
+
+  // Spanish state hub pages
+  for (const stateSlug of getAllStateSlugs()) {
+    pages.push({
+      url: `${baseUrl}/es/${stateSlug}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.7,
+    });
+  }
+
+  // Spanish salary pages
+  for (const slug of getAllSpanishSlugs()) {
+    pages.push({
+      url: `${baseUrl}/es/salario/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
     });
   }
 

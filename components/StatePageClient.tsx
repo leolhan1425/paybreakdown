@@ -11,9 +11,10 @@ interface Props {
   stateName: string;
   stateSlug: string;
   initialResult: TaxResult;
+  lang?: 'en' | 'es';
 }
 
-export default function StatePageClient({ stateCode, stateName, stateSlug, initialResult }: Props) {
+export default function StatePageClient({ stateCode, stateName, stateSlug, initialResult, lang = 'en' }: Props) {
   const [result, setResult] = useState<TaxResult>(initialResult);
 
   const initialValues: ParsedSlug & { stateCode: string } = {
@@ -30,8 +31,8 @@ export default function StatePageClient({ stateCode, stateName, stateSlug, initi
 
   return (
     <>
-      <Calculator initialValues={initialValues} onResultChange={handleResultChange} />
-      <ResultsBreakdown result={result} />
+      <Calculator initialValues={initialValues} onResultChange={handleResultChange} lang={lang} />
+      <ResultsBreakdown result={result} lang={lang} />
     </>
   );
 }

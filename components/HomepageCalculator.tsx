@@ -18,9 +18,10 @@ const DEFAULT_VALUES: ParsedSlug & { stateCode: string } = {
 
 interface Props {
   initialResult: TaxResult;
+  lang?: 'en' | 'es';
 }
 
-export default function HomepageCalculator({ initialResult }: Props) {
+export default function HomepageCalculator({ initialResult, lang = 'en' }: Props) {
   const [mode, setMode] = useState<'calculate' | 'compare'>('calculate');
   const [result, setResult] = useState<TaxResult>(initialResult);
   const [period, setPeriod] = useState<'hourly' | 'annual'>('hourly');
@@ -29,6 +30,9 @@ export default function HomepageCalculator({ initialResult }: Props) {
     setResult(r);
     setPeriod(p);
   }, []);
+
+  const calcLabel = lang === 'es' ? 'Calcular' : 'Calculate';
+  const compareLabel = lang === 'es' ? 'Comparar Estados' : 'Compare States';
 
   return (
     <>
@@ -41,7 +45,7 @@ export default function HomepageCalculator({ initialResult }: Props) {
               mode === 'calculate' ? 'bg-blue-600 text-white shadow-sm' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            Calculate
+            {calcLabel}
           </button>
           <button
             onClick={() => setMode('compare')}
@@ -49,16 +53,16 @@ export default function HomepageCalculator({ initialResult }: Props) {
               mode === 'compare' ? 'bg-blue-600 text-white shadow-sm' : 'text-gray-500 hover:text-gray-700'
             }`}
           >
-            Compare States
+            {compareLabel}
           </button>
         </div>
       </div>
 
       {mode === 'calculate' ? (
         <>
-          <Calculator initialValues={DEFAULT_VALUES} onResultChange={handleResultChange} />
-          <ResultsBreakdown result={result} />
-          <SalaryTable result={result} period={period} />
+          <Calculator initialValues={DEFAULT_VALUES} onResultChange={handleResultChange} lang={lang} />
+          <ResultsBreakdown result={result} lang={lang} />
+          <SalaryTable result={result} period={period} lang={lang} />
         </>
       ) : (
         <CompareCalculator initialStateA="TX" initialStateB="CA" />

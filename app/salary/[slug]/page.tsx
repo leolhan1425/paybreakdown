@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { getAllSlugs, parseSlug, buildSlug } from '@/lib/slug-generator';
+import { englishToSpanishSlug } from '@/lib/spanish-slugs';
 import { calculateTakeHome } from '@/lib/tax-engine';
 import { breadcrumbSchema, webAppSchema } from '@/lib/structured-data';
 import SalaryPageClient from '@/components/SalaryPageClient';
@@ -77,10 +78,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = buildDescription(parsed.amount, parsed.period, parsed.stateName, stateCode, result.takeHome.annual, result.takeHome.monthly, result.gross.annual);
   const canonical = `${BASE_URL}/salary/${slug}`;
 
+  const spanishSlug = englishToSpanishSlug(slug);
+
   return {
     title,
     description,
-    alternates: { canonical },
+    alternates: {
+      canonical,
+      languages: {
+        'en': canonical,
+        'es': `${BASE_URL}/es/salario/${spanishSlug}`,
+        'x-default': canonical,
+      },
+    },
     openGraph: {
       title,
       description,

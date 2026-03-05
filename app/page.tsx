@@ -210,6 +210,15 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Spanish CTA */}
+      <section className="py-6">
+        <div className="max-w-2xl mx-auto px-4 text-center">
+          <Link href="/es" className="text-sm text-gray-500 hover:text-blue-600 transition-colors">
+            Hablas espanol? <span className="text-blue-600 font-medium">Calculadora en espanol &rarr;</span>
+          </Link>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="py-12 text-center">
         <div className="max-w-xl mx-auto px-4">

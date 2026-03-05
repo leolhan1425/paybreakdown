@@ -8,16 +8,16 @@ import Calculator from './Calculator';
 import ResultsBreakdown from './ResultsBreakdown';
 import SalaryTable from './SalaryTable';
 
-// Lazy-load charts — Recharts is large and these are below the fold
 const DonutChart = dynamic(() => import('./DonutChart'), { ssr: false });
 const ComparisonBar = dynamic(() => import('./ComparisonBar'), { ssr: false });
 
 interface Props {
   initialResult: TaxResult;
   initialParsed: ParsedSlug & { stateCode: string };
+  lang?: 'en' | 'es';
 }
 
-export default function SalaryPageClient({ initialResult, initialParsed }: Props) {
+export default function SalaryPageClient({ initialResult, initialParsed, lang = 'en' }: Props) {
   const [result, setResult] = useState<TaxResult>(initialResult);
   const [period, setPeriod] = useState<'hourly' | 'annual'>(initialParsed.period);
 
@@ -28,9 +28,9 @@ export default function SalaryPageClient({ initialResult, initialParsed }: Props
 
   return (
     <>
-      <Calculator initialValues={initialParsed} onResultChange={handleResultChange} />
+      <Calculator initialValues={initialParsed} onResultChange={handleResultChange} lang={lang} />
 
-      <ResultsBreakdown result={result} />
+      <ResultsBreakdown result={result} lang={lang} />
 
       {/* Ad slot 1 */}
 
@@ -39,7 +39,7 @@ export default function SalaryPageClient({ initialResult, initialParsed }: Props
         <ComparisonBar result={result} />
       </div>
 
-      <SalaryTable result={result} period={period} />
+      <SalaryTable result={result} period={period} lang={lang} />
 
       {/* Ad slot 2 */}
     </>

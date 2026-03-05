@@ -36,6 +36,9 @@ export default function Header() {
           <Link href="/about" className="hover:text-blue-600 transition-colors">
             About
           </Link>
+          <Link href="/es" className="hover:text-blue-600 transition-colors text-xs border border-gray-200 rounded px-2 py-1">
+            ES
+          </Link>
         </nav>
 
         {/* Hamburger */}
@@ -77,6 +80,9 @@ export default function Header() {
           </Link>
           <Link href="/about" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
             About
+          </Link>
+          <Link href="/es" className="block text-sm text-gray-600 hover:text-blue-600 py-1" onClick={() => setMenuOpen(false)}>
+            Espanol (ES)
           </Link>
         </div>
       )}

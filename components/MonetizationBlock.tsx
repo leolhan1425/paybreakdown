@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { TaxResult } from '@/lib/tax-engine';
+import { en } from '@/lib/i18n/en';
+import { es } from '@/lib/i18n/es';
 
 const usd = (n: number) =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(n);
@@ -16,59 +18,66 @@ interface Props {
   stateCode: string;
   stateName: string;
   stateSlug: string;
+  lang?: 'en' | 'es';
 }
 
-export default function MonetizationBlock({ result, stateCode, stateName, stateSlug }: Props) {
+export default function MonetizationBlock({ result, stateCode, stateName, stateSlug, lang = 'en' }: Props) {
+  const t = lang === 'es' ? es.monetization : en.monetization;
   const grossAnnual = result.gross.annual;
   const takeHomeAnnual = result.takeHome.annual;
-  const savingsInterest = Math.round(takeHomeAnnual * 0.1 * 0.045); // 10% of take-home at 4.5% APY
+  const savingsInterest = Math.round(takeHomeAnnual * 0.1 * 0.045);
   const match3 = Math.round(grossAnnual * 0.03);
   const match6 = Math.round(grossAnnual * 0.06);
   const hasStateTax = !NO_TAX_STATES.has(stateCode);
   const nearestNoTaxSlug = NEAREST_NO_TAX[stateCode] || 'texas';
+  const prefix = lang === 'es' ? '/es' : '';
+  const blogPath = lang === 'es' ? '/es/blog/estados-sin-impuesto-sobre-la-renta' : '/blog/no-income-tax-states';
 
   return (
     <div className="bg-gray-50 rounded-xl border border-gray-200 p-6 mb-6">
-      <h2 className="font-bold text-gray-900 mb-4">Ways to Keep More of Your Paycheck</h2>
+      <h2 className="font-bold text-gray-900 mb-4">{t.title}</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {/* Card 1: HYSA */}
         <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <p className="font-semibold text-gray-900 text-sm mb-2">Open a High-Yield Savings Account</p>
+          <p className="font-semibold text-gray-900 text-sm mb-2">{t.hysa.title}</p>
           <p className="text-xs text-gray-600 leading-relaxed mb-3">
-            The best high-yield savings accounts pay 4.5%+ APY. Parking just 10% of your take-home ({usd(Math.round(takeHomeAnnual * 0.1))}) earns ~{usd(savingsInterest)}/year in interest.
+            {t.hysa.body(usd(Math.round(takeHomeAnnual * 0.1)), usd(savingsInterest))}
           </p>
-          <span className="text-xs text-blue-600 font-medium">Compare Savings Rates →</span>
+          <span className="text-xs text-blue-600 font-medium">{t.hysa.cta} &rarr;</span>
         </div>
 
         {/* Card 2: 401k */}
         <div className="bg-white rounded-lg border border-gray-200 p-4">
-          <p className="font-semibold text-gray-900 text-sm mb-2">Max Your 401(k) Match</p>
+          <p className="font-semibold text-gray-900 text-sm mb-2">{t.retirement.title}</p>
           <p className="text-xs text-gray-600 leading-relaxed mb-3">
-            If your employer matches 3-6% of your salary, you&apos;re leaving {usd(match3)} to {usd(match6)} in free money on the table every year. Plus, contributions reduce your taxable income.
+            {t.retirement.body(usd(match3), usd(match6))}
           </p>
-          <span className="text-xs text-blue-600 font-medium">Learn how 401(k) affects take-home →</span>
+          <span className="text-xs text-blue-600 font-medium">{t.retirement.cta} &rarr;</span>
         </div>
 
         {/* Card 3: State tax */}
         <div className="bg-white rounded-lg border border-gray-200 p-4">
           {hasStateTax ? (
             <>
-              <p className="font-semibold text-gray-900 text-sm mb-2">Consider a No-Income-Tax State</p>
+              <p className="font-semibold text-gray-900 text-sm mb-2">{t.noTaxState.title}</p>
               <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                You&apos;re paying {usd(result.stateIncomeTax)} in {stateName} income tax this year. In a no-tax state, you&apos;d keep all of it.
+                {t.noTaxState.body(usd(result.stateIncomeTax), stateName)}
               </p>
-              <Link href={`/compare/${stateSlug}-vs-${nearestNoTaxSlug}`} className="text-xs text-blue-600 font-medium hover:underline">
-                Compare {stateName} vs {nearestNoTaxSlug.charAt(0).toUpperCase() + nearestNoTaxSlug.slice(1).replace(/-/g, ' ')} →
+              <Link href={`${prefix}/compare/${stateSlug}-vs-${nearestNoTaxSlug}`} className="text-xs text-blue-600 font-medium hover:underline">
+                {lang === 'es'
+                  ? `Comparar ${stateName} vs ${nearestNoTaxSlug.charAt(0).toUpperCase() + nearestNoTaxSlug.slice(1).replace(/-/g, ' ')}`
+                  : `Compare ${stateName} vs ${nearestNoTaxSlug.charAt(0).toUpperCase() + nearestNoTaxSlug.slice(1).replace(/-/g, ' ')}`
+                } &rarr;
               </Link>
             </>
           ) : (
             <>
-              <p className="font-semibold text-gray-900 text-sm mb-2">You&apos;re in a No-Tax State</p>
+              <p className="font-semibold text-gray-900 text-sm mb-2">{t.alreadyNoTax.title}</p>
               <p className="text-xs text-gray-600 leading-relaxed mb-3">
-                {stateName} has no state income tax — you&apos;re already keeping more than most. The average state tax would cost you an extra $2,000-$5,000/year on this salary.
+                {t.alreadyNoTax.body(stateName)}
               </p>
-              <Link href="/blog/no-income-tax-states" className="text-xs text-blue-600 font-medium hover:underline">
-                Read: 9 States With No Income Tax →
+              <Link href={blogPath} className="text-xs text-blue-600 font-medium hover:underline">
+                {t.alreadyNoTax.cta} &rarr;
               </Link>
             </>
           )}

@@ -1,0 +1,15 @@
+You are a topic generator for SalaryHog.com, a personal finance site with a Chuck Klosterman-influenced voice. The site has calculators for take-home pay across all 50 US states, plus tools for comparing states, relocation planning, rent affordability, and freelance tax math.
+
+Generate 20 blog post topics that:
+1. Start from a specific, concrete question someone might actually wonder about their paycheck, taxes, or cost of living
+2. Have a contrarian or surprising angle — not just "here's how X works" but "here's what everyone gets wrong about X" or "here's the weird thing about X that nobody talks about"
+3. Target long-tail search queries that a salary/tax calculator site could realistically rank for
+4. Span these categories roughly evenly: state tax comparisons, take-home pay, freelance/1099 vs W2, cost of living and relocation, general paycheck/salary observations
+
+For each topic, provide:
+- A working title (interesting, not clickbait)
+- The target keyword phrase (2-5 words, search-intent focused)
+- A one-sentence angle description (what makes this post different from the boring version)
+
+Return as a numbered list. One topic per line, formatted as:
+N. TITLE | KEYWORD: keyword phrase | ANGLE: angle description

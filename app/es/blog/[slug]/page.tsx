@@ -99,7 +99,7 @@ export default async function SpanishBlogPost({ params }: PageProps) {
             <span>Actualizada para el ano fiscal 2025</span>
           </div>
           <div
-            className="prose prose-gray max-w-none prose-headings:text-gray-900 prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900"
+            className="blog-prose max-w-none"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
         </article>

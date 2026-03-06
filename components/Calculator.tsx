@@ -100,22 +100,31 @@ export default function Calculator({ initialValues, onResultChange, lang = 'en' 
   return (
     <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-6">
       {/* Period toggle */}
-      <div className="flex justify-center mb-5">
-        <div className="inline-flex rounded-full bg-gray-100 p-1">
-          {(['hourly', 'annual'] as const).map(p => (
-            <button
-              key={p}
-              onClick={() => handlePeriodToggle(p)}
-              className={`px-5 py-1.5 rounded-full text-sm font-medium transition-colors ${
-                period === p
-                  ? 'bg-white text-gray-900 shadow-sm'
-                  : 'text-gray-500 hover:text-gray-700'
-              }`}
-            >
-              {p === 'hourly' ? t.hourly : t.annual}
-            </button>
-          ))}
-        </div>
+      <div className="flex mb-5 border-b border-gray-200 -mx-6 -mt-6 rounded-t-xl overflow-hidden">
+        {(['hourly', 'annual'] as const).map(p => (
+          <button
+            key={p}
+            onClick={() => handlePeriodToggle(p)}
+            className={`flex-1 flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-semibold transition-colors cursor-pointer ${
+              period === p
+                ? 'bg-green-600 text-white'
+                : 'bg-gray-50 text-gray-500 hover:bg-gray-100 hover:text-gray-700'
+            }`}
+          >
+            {p === 'hourly' ? (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 6v6l4 2" />
+              </svg>
+            ) : (
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <path d="M16 2v4M8 2v4M3 10h18" />
+              </svg>
+            )}
+            {p === 'hourly' ? t.hourly : t.annual}
+          </button>
+        ))}
       </div>
 
       {/* Amount input */}
@@ -155,11 +164,7 @@ export default function Calculator({ initialValues, onResultChange, lang = 'en' 
                 </option>
               ))}
           </select>
-          {NO_TAX_STATES.has(stateCode) && (
-            <span className="inline-block mt-1 text-xs text-green-700 bg-green-50 px-2 py-0.5 rounded-full">
-              {t.noStateTax}
-            </span>
-          )}
+          <p className="mt-1 text-xs text-gray-400">{lang === 'es' ? '★ = Sin impuesto estatal' : '★ = No state income tax'}</p>
         </div>
 
         {/* Filing status */}

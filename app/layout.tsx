@@ -15,27 +15,39 @@ export const metadata: Metadata = {
   },
 };
 
-const FOOTER_POPULAR = [
-  { label: '$20/hr in Texas', href: '/salary/20-an-hour-in-texas' },
+import statesData from '../data/states.json';
+
+const FOOTER_HOURLY = [
   { label: '$15/hr', href: '/salary/15-an-hour' },
-  { label: '$25/hr in California', href: '/salary/25-an-hour-in-california' },
-  { label: '$50K/yr in New York', href: '/salary/50000-a-year-in-new-york' },
-  { label: '$75K/yr in Texas', href: '/salary/75000-a-year-in-texas' },
-  { label: '$100K/yr in California', href: '/salary/100000-a-year-in-california' },
+  { label: '$17/hr', href: '/salary/17-an-hour' },
+  { label: '$20/hr', href: '/salary/20-an-hour' },
+  { label: '$22/hr', href: '/salary/22-an-hour' },
+  { label: '$25/hr', href: '/salary/25-an-hour' },
+  { label: '$27/hr', href: '/salary/27-an-hour' },
   { label: '$30/hr', href: '/salary/30-an-hour' },
-  { label: '$150K/yr', href: '/salary/150000-a-year' },
+  { label: '$35/hr', href: '/salary/35-an-hour' },
+  { label: '$40/hr', href: '/salary/40-an-hour' },
+  { label: '$45/hr', href: '/salary/45-an-hour' },
+  { label: '$50/hr', href: '/salary/50-an-hour' },
+  { label: '$60/hr', href: '/salary/60-an-hour' },
 ];
 
-const FOOTER_STATES = [
-  { label: 'Texas', href: '/texas' },
-  { label: 'California', href: '/california' },
-  { label: 'New York', href: '/new-york' },
-  { label: 'Florida', href: '/florida' },
-  { label: 'Illinois', href: '/illinois' },
-  { label: 'Washington', href: '/washington' },
-  { label: 'Arizona', href: '/arizona' },
-  { label: 'Colorado', href: '/colorado' },
+const FOOTER_ANNUAL = [
+  { label: '$30K', href: '/salary/30000-a-year' },
+  { label: '$40K', href: '/salary/40000-a-year' },
+  { label: '$45K', href: '/salary/45000-a-year' },
+  { label: '$50K', href: '/salary/50000-a-year' },
+  { label: '$55K', href: '/salary/55000-a-year' },
+  { label: '$60K', href: '/salary/60000-a-year' },
+  { label: '$70K', href: '/salary/70000-a-year' },
+  { label: '$75K', href: '/salary/75000-a-year' },
+  { label: '$80K', href: '/salary/80000-a-year' },
+  { label: '$90K', href: '/salary/90000-a-year' },
+  { label: '$100K', href: '/salary/100000-a-year' },
+  { label: '$150K', href: '/salary/150000-a-year' },
 ];
+
+const FOOTER_ALL_STATES = [...statesData].sort((a, b) => a.name.localeCompare(b.name));
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -54,51 +66,49 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <div className="min-h-screen">{children}</div>
 
         <footer className="bg-gray-900 text-gray-400 py-12 mt-16">
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-              {/* Col 1 */}
+          <div className="max-w-6xl mx-auto px-4">
+            {/* Top row */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+              {/* Col 1: Popular Calculations */}
               <div>
-                <p className="text-white font-bold text-lg mb-2">SalaryHog</p>
-                <p className="text-sm leading-relaxed">Free salary & take-home pay calculator for all 50 states.</p>
-              </div>
-              {/* Col 2 */}
-              <div>
-                <p className="text-white font-semibold text-sm mb-3">Popular</p>
-                <ul className="space-y-2">
-                  {FOOTER_POPULAR.map(l => (
-                    <li key={l.href}>
-                      <Link href={l.href} className="text-sm hover:text-white transition-colors">{l.label}</Link>
-                    </li>
+                <p className="text-white font-semibold text-sm mb-3">Popular Calculations</p>
+                <p className="text-xs text-gray-500 mb-2">Hourly</p>
+                <div className="flex flex-wrap gap-x-3 gap-y-1 mb-3">
+                  {FOOTER_HOURLY.map(l => (
+                    <Link key={l.href} href={l.href} className="text-xs hover:text-white transition-colors">{l.label}</Link>
                   ))}
-                </ul>
-              </div>
-              {/* Col 3 */}
-              <div>
-                <p className="text-white font-semibold text-sm mb-3">States</p>
-                <ul className="space-y-2">
-                  {FOOTER_STATES.map(l => (
-                    <li key={l.href}>
-                      <Link href={l.href} className="text-sm hover:text-white transition-colors">{l.label}</Link>
-                    </li>
+                </div>
+                <p className="text-xs text-gray-500 mb-2">Annual</p>
+                <div className="flex flex-wrap gap-x-3 gap-y-1">
+                  {FOOTER_ANNUAL.map(l => (
+                    <Link key={l.href} href={l.href} className="text-xs hover:text-white transition-colors">{l.label}</Link>
                   ))}
-                </ul>
+                </div>
               </div>
-              {/* Col 4 */}
+
+              {/* Col 2: All States */}
+              <div>
+                <p className="text-white font-semibold text-sm mb-3">All States</p>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-x-3 gap-y-1">
+                  {FOOTER_ALL_STATES.map(s => (
+                    <Link key={s.code} href={`/${s.slug}`} className="text-xs hover:text-white transition-colors truncate">{s.name}</Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Col 3: Resources */}
               <div>
                 <p className="text-white font-semibold text-sm mb-3">Resources</p>
-                <ul className="space-y-2">
-                  <li><Link href="/blog/no-income-tax-states" className="text-sm hover:text-white transition-colors">No Income Tax States</Link></li>
-                  <li><Link href="/blog/20-an-hour" className="text-sm hover:text-white transition-colors">$20/hr — Can You Live on It?</Link></li>
-                  <li><Link href="/blog/salary-vs-hourly" className="text-sm hover:text-white transition-colors">Salary vs Hourly</Link></li>
-                  <li><Link href="/compare/texas-vs-california" className="text-sm hover:text-white transition-colors">Texas vs California</Link></li>
-                  <li><Link href="/compare/new-york-vs-florida" className="text-sm hover:text-white transition-colors">New York vs Florida</Link></li>
-                  <li><Link href="/relocate" className="text-sm hover:text-white transition-colors">Relocation Calculator</Link></li>
-                  <li><Link href="/relocate/new-york-ny-to-miami-fl" className="text-sm hover:text-white transition-colors">NYC to Miami</Link></li>
-                  <li><Link href="/relocate/san-francisco-ca-to-austin-tx" className="text-sm hover:text-white transition-colors">SF to Austin</Link></li>
-                  <li><Link href="/afford" className="text-sm hover:text-white transition-colors">Rent Affordability</Link></li>
-                  <li><Link href="/freelance" className="text-sm hover:text-white transition-colors">1099 vs W2 Calculator</Link></li>
-                  <li><Link href="/freelance/texas" className="text-sm hover:text-white transition-colors">Freelance Taxes in Texas</Link></li>
-                  <li><Link href="/blog" className="text-sm hover:text-white transition-colors">All Blog Posts</Link></li>
+                <ul className="space-y-1.5">
+                  <li><Link href="/blog" className="text-xs hover:text-white transition-colors">Blog</Link></li>
+                  <li><Link href="/compare/texas-vs-california" className="text-xs hover:text-white transition-colors">Compare States</Link></li>
+                  <li><Link href="/relocate" className="text-xs hover:text-white transition-colors">Relocation Calculator</Link></li>
+                  <li><Link href="/afford" className="text-xs hover:text-white transition-colors">Rent Affordability</Link></li>
+                  <li><Link href="/freelance" className="text-xs hover:text-white transition-colors">1099 vs W2 Calculator</Link></li>
+                  <li><Link href="/about" className="text-xs hover:text-white transition-colors">About</Link></li>
+                  <li><Link href="/privacy" className="text-xs hover:text-white transition-colors">Privacy Policy</Link></li>
+                  <li><Link href="/terms" className="text-xs hover:text-white transition-colors">Terms of Service</Link></li>
+                  <li><Link href="/es" className="text-xs hover:text-white transition-colors">Espanol</Link></li>
                 </ul>
               </div>
             </div>
@@ -108,7 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 This calculator provides estimates for informational purposes only. Actual take-home pay may vary based on additional deductions, local taxes, pre-tax contributions, and individual circumstances. This is not tax advice. Consult a tax professional.
               </p>
               <div className="flex flex-wrap items-center justify-between gap-3 text-xs text-gray-500">
-                <span>© 2025 SalaryHog. Data updated for the 2025 tax year.</span>
+                <span>&copy; 2025 SalaryHog. Data updated for the 2025 tax year.</span>
                 <div className="flex gap-4">
                   <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
                   <Link href="/terms" className="hover:text-white transition-colors">Terms of Service</Link>

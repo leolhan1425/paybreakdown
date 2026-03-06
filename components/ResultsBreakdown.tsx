@@ -47,19 +47,23 @@ export default function ResultsBreakdown({ result, lang = 'en' }: Props) {
   return (
     <div className="mb-6">
       {/* Hero */}
-      <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 mb-4">
+      <div className="bg-gradient-to-br from-green-50 to-white rounded-xl border border-green-200 shadow-sm p-6 mb-4">
         <p className="text-gray-500 text-sm mb-1">{t.youTakeHome}</p>
-        <p className="text-4xl font-bold text-green-700 mb-2">
-          {usd(takeHome.annual)}<span className="text-lg font-normal text-gray-500">/{t.year}</span>
+        <p className="text-5xl font-bold text-green-700 mb-4">
+          {usd(takeHome.annual)}<span className="text-xl font-normal text-gray-400 ml-1">/{t.year}</span>
         </p>
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-500">
-          <span>{usd(takeHome.monthly)}/{t.month}</span>
-          <span className="text-gray-300">&middot;</span>
-          <span>{usd(takeHome.biweekly)}/{t.paycheck}</span>
-          <span className="text-gray-300">&middot;</span>
-          <span>{usd(takeHome.weekly)}/{t.week}</span>
-          <span className="text-gray-300">&middot;</span>
-          <span>{usd(takeHome.hourly, 2)}/{t.hour}</span>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          {[
+            { value: usd(takeHome.monthly), label: `/${t.month}` },
+            { value: usd(takeHome.biweekly), label: `/${t.paycheck}` },
+            { value: usd(takeHome.weekly), label: `/${t.week}` },
+            { value: usd(takeHome.hourly, 2), label: `/${t.hour}` },
+          ].map(pill => (
+            <div key={pill.label} className="bg-white rounded-lg border border-gray-200 px-3 py-2 text-center">
+              <p className="text-sm font-semibold text-gray-900">{pill.value}</p>
+              <p className="text-xs text-gray-400">{pill.label}</p>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -107,13 +111,28 @@ export default function ResultsBreakdown({ result, lang = 'en' }: Props) {
       </div>
 
       {/* Insight callout */}
-      <div className="rounded-lg px-4 py-3 text-sm bg-blue-50 border border-blue-100 text-blue-800">
-        {!hasStateTax || stateIncomeTax === 0
-          ? t.noStateTaxInsight(stateName)
-          : effectiveRate > 0.25
-          ? t.highTaxInsight(pct(effectiveRate))
-          : t.normalTaxInsight(pct(effectiveRate), keepCents.toFixed(0))}
-      </div>
+      {!hasStateTax || stateIncomeTax === 0 ? (
+        <div className="rounded-xl px-5 py-4 bg-green-50 border border-green-200 flex items-start gap-3">
+          <span className="text-green-600 text-lg mt-0.5">&#10003;</span>
+          <div className="text-sm text-green-800 leading-relaxed">
+            {t.noStateTaxInsight(stateName)}
+          </div>
+        </div>
+      ) : effectiveRate > 0.25 ? (
+        <div className="rounded-xl px-5 py-4 bg-amber-50 border border-amber-200 flex items-start gap-3">
+          <span className="text-amber-500 text-lg mt-0.5">&#9888;</span>
+          <div className="text-sm text-amber-800 leading-relaxed">
+            {t.highTaxInsight(pct(effectiveRate))}
+          </div>
+        </div>
+      ) : (
+        <div className="rounded-xl px-5 py-4 bg-blue-50 border border-blue-200 flex items-start gap-3">
+          <span className="text-blue-500 text-lg mt-0.5">&#8505;</span>
+          <div className="text-sm text-blue-800 leading-relaxed">
+            {t.normalTaxInsight(pct(effectiveRate), keepCents.toFixed(0))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

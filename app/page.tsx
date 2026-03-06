@@ -4,7 +4,6 @@ import { buildSlug } from '@/lib/slug-generator';
 import { getAllPosts } from '@/lib/blog';
 import HomepageCalculator from '@/components/HomepageCalculator';
 import FAQAccordion from '@/components/FAQAccordion';
-import ScrollToTopButton from '@/components/ScrollToTopButton';
 import EmailCapture from '@/components/EmailCapture';
 import { faqSchema, webAppSchema, websiteSchema } from '@/lib/structured-data';
 import statesData from '../data/states.json';
@@ -203,13 +202,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Email Capture */}
-      <section className="py-12">
-        <div className="max-w-2xl mx-auto px-4">
-          <EmailCapture />
-        </div>
-      </section>
-
       {/* Spanish CTA */}
       <section className="py-6">
         <div className="max-w-2xl mx-auto px-4 text-center">
@@ -219,11 +211,36 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-12 text-center">
-        <div className="max-w-xl mx-auto px-4">
-          <h2 className="text-xl font-semibold text-gray-900 mb-4">Ready to calculate your take-home pay?</h2>
-          <ScrollToTopButton />
+      {/* What's Next */}
+      <section className="py-12">
+        <div className="max-w-5xl mx-auto px-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">What&apos;s Next?</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <Link
+              href="/afford"
+              className="bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-sm transition-all text-center"
+            >
+              <div className="text-3xl mb-3">&#128202;</div>
+              <p className="font-semibold text-gray-900 mb-2">Budget Your Pay</p>
+              <p className="text-sm text-gray-500">See how far your take-home goes with our rent affordability calculator.</p>
+              <p className="text-sm text-blue-600 font-medium mt-3">Get Started &rarr;</p>
+            </Link>
+            <Link
+              href="/compare/texas-vs-california"
+              className="bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-sm transition-all text-center"
+            >
+              <div className="text-3xl mb-3">&#9878;</div>
+              <p className="font-semibold text-gray-900 mb-2">Compare States</p>
+              <p className="text-sm text-gray-500">Would you keep more in another state? Compare side by side.</p>
+              <p className="text-sm text-blue-600 font-medium mt-3">Compare Now &rarr;</p>
+            </Link>
+            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
+              <div className="text-3xl mb-3">&#128231;</div>
+              <p className="font-semibold text-gray-900 mb-2">Get Tax Updates</p>
+              <p className="text-sm text-gray-500 mb-3">Get a detailed breakdown sent to your inbox &mdash; plus 2026 tax bracket updates.</p>
+              <EmailCapture />
+            </div>
+          </div>
         </div>
       </section>
     </>

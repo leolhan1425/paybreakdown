@@ -15,13 +15,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const pages: MetadataRoute.Sitemap = [
     {
-      url: baseUrl,
+      url: `${baseUrl}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/blog/`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of getAllBlogSlugs()) {
     pages.push({
-      url: `${baseUrl}/blog/${slug}`,
+      url: `${baseUrl}/blog/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
@@ -39,7 +39,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of getAllComparisonSlugs()) {
     pages.push({
-      url: `${baseUrl}/compare/${slug}`,
+      url: `${baseUrl}/compare/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.7,
@@ -47,7 +47,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   pages.push({
-    url: `${baseUrl}/relocate`,
+    url: `${baseUrl}/relocate/`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.8,
@@ -55,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of getAllRelocationSlugs()) {
     pages.push({
-      url: `${baseUrl}/relocate/${slug}`,
+      url: `${baseUrl}/relocate/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
@@ -63,7 +63,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   pages.push({
-    url: `${baseUrl}/afford`,
+    url: `${baseUrl}/afford/`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.8,
@@ -71,7 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of getAllAffordSlugs()) {
     pages.push({
-      url: `${baseUrl}/afford/${slug}`,
+      url: `${baseUrl}/afford/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
@@ -79,7 +79,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }
 
   pages.push({
-    url: `${baseUrl}/freelance`,
+    url: `${baseUrl}/freelance/`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.8,
@@ -87,7 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of getAllFreelanceSlugs()) {
     pages.push({
-      url: `${baseUrl}/freelance/${slug}`,
+      url: `${baseUrl}/freelance/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
@@ -96,7 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const stateSlug of getAllStateSlugs()) {
     pages.push({
-      url: `${baseUrl}/${stateSlug}`,
+      url: `${baseUrl}/${stateSlug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.8,
@@ -105,7 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of getAllSlugs()) {
     pages.push({
-      url: `${baseUrl}/salary/${slug}`,
+      url: `${baseUrl}/salary/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,
@@ -115,14 +115,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // --- Spanish pages ---
 
   pages.push({
-    url: `${baseUrl}/es`,
+    url: `${baseUrl}/es/`,
     lastModified: new Date(),
     changeFrequency: 'monthly',
     priority: 0.9,
   });
 
   pages.push({
-    url: `${baseUrl}/es/blog`,
+    url: `${baseUrl}/es/blog/`,
     lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.7,
@@ -130,7 +130,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   for (const slug of getAllBlogSlugsEs()) {
     pages.push({
-      url: `${baseUrl}/es/blog/${slug}`,
+      url: `${baseUrl}/es/blog/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
@@ -140,7 +140,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Spanish state hub pages
   for (const stateSlug of getAllStateSlugs()) {
     pages.push({
-      url: `${baseUrl}/es/${stateSlug}`,
+      url: `${baseUrl}/es/${stateSlug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.7,
@@ -150,7 +150,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Spanish salary pages
   for (const slug of getAllSpanishSlugs()) {
     pages.push({
-      url: `${baseUrl}/es/salario/${slug}`,
+      url: `${baseUrl}/es/salario/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.5,

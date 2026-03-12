@@ -30,6 +30,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       url: `${BASE_URL}/blog/${slug}`,
       type: 'article',
       publishedTime: post.date,
+      images: slug === 'take-home-pay-75k-all-50-states'
+        ? [{ url: `${BASE_URL}/charts/takehome-75k-square.png`, width: 1080, height: 1080 }]
+        : [{ url: `${BASE_URL}/og-image.svg`, width: 1200, height: 630 }],
     },
   };
 }

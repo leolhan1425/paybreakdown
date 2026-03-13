@@ -3,6 +3,7 @@ name: Auto Blog Post
 on:
   schedule:
     - cron: '0 14 * * 1'  # Every Monday 9am ET (14:00 UTC)
+    - cron: '0 14 * * 4'  # Every Thursday 9am ET (14:00 UTC)
   workflow_dispatch: {}     # Manual trigger from GitHub UI
 
 permissions:

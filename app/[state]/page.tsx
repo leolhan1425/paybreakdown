@@ -5,6 +5,9 @@ import { getAllStateSlugs, getStateBySlug, buildSlug } from '@/lib/slug-generato
 import { calculateTakeHome } from '@/lib/tax-engine';
 import { breadcrumbSchema } from '@/lib/structured-data';
 import StatePageClient from '@/components/StatePageClient';
+import { getMetrosByState, getAllMetros } from '@/lib/cost-of-living';
+import { buildRelocationSlug } from '@/lib/relocation-slugs';
+import ProductCTA from '@/components/ProductCTA';
 import statesData from '../../data/states.json';
 
 interface PageProps {
@@ -28,15 +31,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${state.name} Salary Calculator — Take-Home Pay 2025`,
     description: `Calculate your take-home pay in ${state.name}. ${noTax ? 'No state income tax. ' : ''}Free 2025 calculator with federal tax breakdown for any salary.`,
     alternates: {
-      canonical: `https://salaryhog.com/${stateSlug}`,
+      canonical: `https://salaryhog.com/${stateSlug}/`,
       languages: {
-        'en': `https://salaryhog.com/${stateSlug}`,
-        'es': `https://salaryhog.com/es/${stateSlug}`,
-        'x-default': `https://salaryhog.com/${stateSlug}`,
+        'en': `https://salaryhog.com/${stateSlug}/`,
+        'es': `https://salaryhog.com/es/${stateSlug}/`,
+        'x-default': `https://salaryhog.com/${stateSlug}/`,
       },
     },
     openGraph: {
-      url: `https://salaryhog.com/${stateSlug}`,
+      url: `https://salaryhog.com/${stateSlug}/`,
       images: [{ url: 'https://salaryhog.com/og-image.svg', width: 1200, height: 630 }],
     },
   };
@@ -280,6 +283,41 @@ export default async function StatePage({ params }: PageProps) {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* Moving to/from this state */}
+        {(() => {
+          const stateMetros = getMetrosByState(state.code);
+          if (stateMetros.length === 0) return null;
+          const allMetros = getAllMetros();
+          const popularDests = allMetros
+            .filter(m => m.stateCode !== state.code)
+            .sort((a, b) => b.population - a.population)
+            .slice(0, 6);
+          return (
+            <section className="mt-10">
+              <h2 className="text-xl font-bold text-gray-900 mb-4">Thinking About Moving To or From {state.name}?</h2>
+              <p className="text-sm text-gray-600 mb-4">See what salary you&apos;d need to maintain your lifestyle.</p>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                {stateMetros.flatMap(metro =>
+                  popularDests.slice(0, 4).map(dest => (
+                    <Link
+                      key={`${metro.slug}-${dest.slug}`}
+                      href={`/relocate/${buildRelocationSlug(metro, dest)}`}
+                      className="bg-white border border-gray-200 rounded-lg px-3 py-2 text-sm text-blue-600 hover:border-blue-300 hover:shadow-sm transition-all"
+                    >
+                      {metro.name} &rarr; {dest.name}
+                    </Link>
+                  ))
+                ).slice(0, 12)}
+              </div>
+            </section>
+          );
+        })()}
+
+        {/* Product CTA */}
+        <section className="mt-10">
+          <ProductCTA />
         </section>
 
         {/* Related states */}

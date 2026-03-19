@@ -41,4 +41,6 @@ This is the question that comes up every time someone posts a state tax comparis
 
 But raw take-home pay still matters. It's the starting point for every other financial decision you make, and most people have never actually looked up what their state takes before they see their first paycheck.
 
+**We built the cost-of-living comparison you asked for.** The [relocation salary calculator](/relocate/) shows what you'd need to earn in a new city to maintain the same purchasing power — taxes and cost of living included.
+
 **Want to check your own salary?** The [SalaryHog calculator](/) does this for any income in any state — enter a number and get the full breakdown in seconds.

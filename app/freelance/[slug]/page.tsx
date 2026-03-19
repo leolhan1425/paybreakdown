@@ -6,6 +6,7 @@ import { compare1099vsW2, calculate1099Tax } from '@/lib/self-employment-tax';
 import { calculateTakeHome } from '@/lib/tax-engine';
 import { breadcrumbSchema, faqSchema } from '@/lib/structured-data';
 import FreelanceCalculator from '@/components/FreelanceCalculator';
+import ProductCTA from '@/components/ProductCTA';
 import statesData from '../../../data/states.json';
 
 const BASE_URL = 'https://salaryhog.com';
@@ -35,8 +36,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return {
       title,
       description,
-      alternates: { canonical: `${BASE_URL}/freelance/${slug}` },
-      openGraph: { title, description, url: `${BASE_URL}/freelance/${slug}` },
+      alternates: { canonical: `${BASE_URL}/freelance/${slug}/` },
+      openGraph: { title, description, url: `${BASE_URL}/freelance/${slug}/` },
     };
   }
 
@@ -45,8 +46,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    alternates: { canonical: `${BASE_URL}/freelance/${slug}` },
-    openGraph: { title, description, url: `${BASE_URL}/freelance/${slug}` },
+    alternates: { canonical: `${BASE_URL}/freelance/${slug}/` },
+    openGraph: { title, description, url: `${BASE_URL}/freelance/${slug}/` },
   };
 }
 
@@ -214,6 +215,11 @@ function IncomeStatePage({ income, state, slug }: { income: number; state: typeo
           )}
         </section>
 
+        {/* Product CTA */}
+        <section className="mt-10">
+          <ProductCTA productId="1099-calculator" />
+        </section>
+
         {/* Cross-links */}
         <section className="mt-10">
           <h2 className="text-xl font-bold text-gray-900 mb-4">Related</h2>
@@ -323,6 +329,11 @@ function StateOnlyPage({ state, slug }: { state: typeof statesData[0]; slug: str
             </table>
           </div>
           <p className="text-xs text-gray-500 mt-2">Single filer, no business expenses, 2025 tax brackets.</p>
+        </section>
+
+        {/* Product CTA */}
+        <section className="mt-10">
+          <ProductCTA productId="1099-calculator" />
         </section>
 
         {/* Browse other states */}

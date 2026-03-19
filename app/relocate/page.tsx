@@ -14,11 +14,11 @@ const usd = (n: number) =>
 export const metadata: Metadata = {
   title: 'Relocation Salary Calculator — What Would You Need to Earn? | SalaryHog',
   description: 'Moving to a new city? See what salary you need to maintain your lifestyle. Compare cost of living, taxes, and take-home pay across 50 US metros.',
-  alternates: { canonical: `${BASE_URL}/relocate` },
+  alternates: { canonical: `${BASE_URL}/relocate/` },
   openGraph: {
     title: 'Relocation Salary Calculator | SalaryHog',
     description: 'Moving to a new city? See what salary you need to maintain your lifestyle.',
-    url: `${BASE_URL}/relocate`,
+    url: `${BASE_URL}/relocate/`,
   },
 };
 

@@ -12,11 +12,11 @@ const usd = (n: number) =>
 export const metadata: Metadata = {
   title: 'Rent Affordability Calculator: How Much Rent Can You Afford? | SalaryHog',
   description: 'Find out how much rent you can afford based on your real take-home pay, not gross income. 50 US cities with actual rent data. Free 2025 calculator.',
-  alternates: { canonical: `${BASE_URL}/afford` },
+  alternates: { canonical: `${BASE_URL}/afford/` },
   openGraph: {
     title: 'How Much Rent Can You Afford? | SalaryHog',
     description: 'Find out based on your real take-home pay. 50 US cities.',
-    url: `${BASE_URL}/afford`,
+    url: `${BASE_URL}/afford/`,
   },
 };
 

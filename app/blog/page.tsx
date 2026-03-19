@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { getAllPosts } from '@/lib/blog';
+import EmailCapture from '@/components/EmailCapture';
 
 export const metadata: Metadata = {
   title: 'Blog — SalaryHog',
@@ -26,11 +27,19 @@ export default function BlogIndex() {
             <p className="text-gray-600 text-sm mb-3">{post.excerpt}</p>
             <div className="flex items-center gap-3 text-xs text-gray-400">
               <span>{post.readingTime} min read</span>
-              <span>·</span>
+              <span>&middot;</span>
               <span>{new Date(post.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
             </div>
           </Link>
         ))}
+      </div>
+
+      <div className="mt-10">
+        <EmailCapture
+          headline="We're building more tools"
+          subtext="Cost-of-living comparisons, relocation calculators, and freelance tax breakdowns are coming. Get notified."
+          source="blog-index"
+        />
       </div>
     </main>
   );

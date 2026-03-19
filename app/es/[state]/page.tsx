@@ -35,15 +35,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `Calculadora de Sueldo en ${esName} — Impuestos 2025 | SalaryHog`,
     description: `Calcula tu sueldo neto en ${esName}. ${noTax ? 'Sin impuesto estatal sobre la renta. ' : ''}Desglose de impuestos federales y estatales. Gratis, 2025.`,
     alternates: {
-      canonical: `https://salaryhog.com/es/${stateSlug}`,
+      canonical: `https://salaryhog.com/es/${stateSlug}/`,
       languages: {
-        'en': `https://salaryhog.com/${stateSlug}`,
-        'es': `https://salaryhog.com/es/${stateSlug}`,
-        'x-default': `https://salaryhog.com/${stateSlug}`,
+        'en': `https://salaryhog.com/${stateSlug}/`,
+        'es': `https://salaryhog.com/es/${stateSlug}/`,
+        'x-default': `https://salaryhog.com/${stateSlug}/`,
       },
     },
     openGraph: {
-      url: `https://salaryhog.com/es/${stateSlug}`,
+      url: `https://salaryhog.com/es/${stateSlug}/`,
       images: [{ url: 'https://salaryhog.com/og-image.svg', width: 1200, height: 630 }],
     },
   };

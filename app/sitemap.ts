@@ -6,6 +6,8 @@ import { getAllRelocationSlugs } from '@/lib/relocation-slugs';
 import { getAllFreelanceSlugs } from '@/lib/freelance-slugs';
 import { getAllAffordSlugs } from '@/lib/afford-slugs';
 import { getAllSpanishSlugs, englishToSpanishSlug } from '@/lib/spanish-slugs';
+import { getAllMarriedSlugs } from '@/lib/married-slugs';
+import { getAllLearnSlugs } from '@/lib/learn';
 import { getAllBlogSlugsEs } from '@/lib/blog-es';
 
 export const dynamic = 'force-static';
@@ -27,6 +29,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
   ];
+
+  pages.push({
+    url: `${baseUrl}/shop/`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  });
 
   for (const slug of getAllBlogSlugs()) {
     pages.push({
@@ -88,6 +97,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
   for (const slug of getAllFreelanceSlugs()) {
     pages.push({
       url: `${baseUrl}/freelance/${slug}/`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.6,
+    });
+  }
+
+  pages.push({
+    url: `${baseUrl}/learn/`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly',
+    priority: 0.8,
+  });
+
+  for (const slug of getAllLearnSlugs()) {
+    pages.push({
+      url: `${baseUrl}/learn/${slug}/`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    });
+  }
+
+  pages.push({
+    url: `${baseUrl}/married/`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  });
+
+  for (const slug of getAllMarriedSlugs()) {
+    pages.push({
+      url: `${baseUrl}/married/${slug}/`,
       lastModified: new Date(),
       changeFrequency: 'yearly',
       priority: 0.6,

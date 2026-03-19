@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   const title = buildTitle(parsed.amount, parsed.period, parsed.stateSlug, stateCode, result.takeHome.annual, result.gross.annual);
   const description = buildDescription(parsed.amount, parsed.period, parsed.stateSlug, result.takeHome.annual, result.takeHome.monthly, result.gross.annual);
-  const canonical = `${BASE_URL}/es/salario/${slug}`;
+  const canonical = `${BASE_URL}/es/salario/${slug}/`;
   const englishSlug = spanishToEnglishSlug(slug);
 
   return {
@@ -91,9 +91,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical,
       languages: {
-        'en': `${BASE_URL}/salary/${englishSlug}`,
+        'en': `${BASE_URL}/salary/${englishSlug}/`,
         'es': canonical,
-        'x-default': `${BASE_URL}/salary/${englishSlug}`,
+        'x-default': `${BASE_URL}/salary/${englishSlug}/`,
       },
     },
     openGraph: {

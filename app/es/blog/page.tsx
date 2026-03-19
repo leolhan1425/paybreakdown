@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   title: 'Blog — SalaryHog en Espanol',
   description: 'Articulos sobre sueldos, impuestos y finanzas personales en Estados Unidos. Escrito en espanol.',
   alternates: {
-    canonical: 'https://salaryhog.com/es/blog',
+    canonical: 'https://salaryhog.com/es/blog/',
     languages: {
-      'en': 'https://salaryhog.com/blog',
-      'es': 'https://salaryhog.com/es/blog',
-      'x-default': 'https://salaryhog.com/blog',
+      'en': 'https://salaryhog.com/blog/',
+      'es': 'https://salaryhog.com/es/blog/',
+      'x-default': 'https://salaryhog.com/blog/',
     },
   },
 };

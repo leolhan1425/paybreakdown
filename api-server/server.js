@@ -6,9 +6,9 @@ const PORT = 8054;
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '..', 'data');
 const SUBSCRIBERS_FILE = path.join(DATA_DIR, 'subscribers.json');
 
-// Rate limiting: max 3 submissions per IP per hour
+// Rate limiting: max 5 submissions per IP per hour
 const rateLimitMap = new Map(); // ip -> { count, resetTime }
-const RATE_LIMIT = 3;
+const RATE_LIMIT = 5;
 const RATE_WINDOW_MS = 60 * 60 * 1000; // 1 hour
 
 function checkRateLimit(ip) {
@@ -80,48 +80,50 @@ const server = http.createServer(async (req, res) => {
 
     if (!checkRateLimit(ip)) {
       res.writeHead(429, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Too many requests. Try again later.' }));
+      res.end(JSON.stringify({ status: 'error', message: 'Too many requests' }));
       return;
     }
 
     try {
-      const { email } = await parseBody(req);
+      const { email, source } = await parseBody(req);
 
       if (!email || !isValidEmail(email)) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ error: 'Invalid email address.' }));
+        res.end(JSON.stringify({ status: 'error', message: 'Invalid email address.' }));
         return;
       }
 
-      const subscribers = readSubscribers();
       const normalizedEmail = email.toLowerCase().trim();
+      const subscribers = readSubscribers();
 
+      // Duplicate check — return success silently
       if (subscribers.some(s => s.email === normalizedEmail)) {
         res.writeHead(200, { 'Content-Type': 'application/json' });
-        res.end(JSON.stringify({ success: true, message: "You're already subscribed!" }));
+        res.end(JSON.stringify({ status: 'ok' }));
         return;
       }
 
       subscribers.push({
         email: normalizedEmail,
-        subscribedAt: new Date().toISOString(),
+        source: source || 'unknown',
+        timestamp: new Date().toISOString(),
         ip: ip,
       });
 
       writeSubscribers(subscribers);
 
       res.writeHead(200, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ success: true, message: 'Subscribed successfully!' }));
-      console.log(`[${new Date().toISOString()}] New subscriber: ${normalizedEmail}`);
+      res.end(JSON.stringify({ status: 'ok' }));
+      console.log(`[${new Date().toISOString()}] New subscriber: ${normalizedEmail} (source: ${source || 'unknown'})`);
     } catch (err) {
       res.writeHead(400, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify({ error: 'Invalid request.' }));
+      res.end(JSON.stringify({ status: 'error', message: 'Invalid request.' }));
     }
     return;
   }
 
   res.writeHead(404, { 'Content-Type': 'application/json' });
-  res.end(JSON.stringify({ error: 'Not found' }));
+  res.end(JSON.stringify({ status: 'error', message: 'Not found' }));
 });
 
 server.listen(PORT, '127.0.0.1', () => {

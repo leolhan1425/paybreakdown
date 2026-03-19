@@ -38,19 +38,22 @@ export function calculateEquivalentSalary(
   toMetro: Metro,
   filingStatus: 'single' | 'married' = 'single',
 ): RelocationResult {
-  const colAdjustedSalary = Math.round(currentSalary * (toMetro.rpp / fromMetro.rpp));
-
   const currentTakeHome = calculateTakeHome({ amount: currentSalary, period: 'annual', stateCode: fromMetro.stateCode, filingStatus });
-  const equivalentTakeHome = calculateTakeHome({ amount: colAdjustedSalary, period: 'annual', stateCode: toMetro.stateCode, filingStatus });
+  const targetPurchasingPower = currentTakeHome.takeHome.annual / (fromMetro.rpp / 100);
+
+  // Binary search: find gross salary in City B where purchasing power matches
+  const equivalentSalary = findEquivalentGross(targetPurchasingPower, toMetro.stateCode, toMetro.rpp, filingStatus);
+
+  const equivalentTakeHome = calculateTakeHome({ amount: equivalentSalary, period: 'annual', stateCode: toMetro.stateCode, filingStatus });
   const sameSalaryTakeHome = calculateTakeHome({ amount: currentSalary, period: 'annual', stateCode: toMetro.stateCode, filingStatus });
 
   return {
     currentSalary,
     currentTakeHome,
-    equivalentSalary: colAdjustedSalary,
+    equivalentSalary,
     equivalentTakeHome,
     sameSalaryTakeHome,
-    colDifference: colAdjustedSalary - currentSalary,
+    colDifference: equivalentSalary - currentSalary,
     colPercentDifference: ((toMetro.rpp / fromMetro.rpp) - 1) * 100,
     taxDifference: sameSalaryTakeHome.takeHome.annual - currentTakeHome.takeHome.annual,
     housingPercentDifference: ((toMetro.rppHousing / fromMetro.rppHousing) - 1) * 100,
@@ -58,6 +61,28 @@ export function calculateEquivalentSalary(
     fromMetro,
     toMetro,
   };
+}
+
+export function findEquivalentGross(
+  targetPurchasingPower: number,
+  stateCode: string,
+  rpp: number,
+  filingStatus: 'single' | 'married',
+): number {
+  let low = 10000;
+  let high = 500000;
+  for (let i = 0; i < 50; i++) {
+    const mid = Math.round((low + high) / 2);
+    const takeHome = calculateTakeHome({ amount: mid, period: 'annual', stateCode, filingStatus });
+    const pp = takeHome.takeHome.annual / (rpp / 100);
+    if (pp < targetPurchasingPower) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+    if (high - low <= 100) break;
+  }
+  return Math.round((low + high) / 2);
 }
 
 function haversineDistance(lat1: number, lng1: number, lat2: number, lng2: number): number {

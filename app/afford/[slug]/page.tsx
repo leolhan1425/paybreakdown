@@ -28,12 +28,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     const salaryStr = `$${(parsed.salary / 1000).toFixed(0)}K`;
     const title = `Can I Afford Rent in ${parsed.metro.name} on ${salaryStr}? (2025) | SalaryHog`;
     const description = `See if you can afford a 1BR apartment in ${parsed.metro.fullName} on a ${salaryStr} salary. Based on real take-home pay after taxes.`;
-    return { title, description, alternates: { canonical: `${BASE_URL}/afford/${slug}` }, openGraph: { title, description, url: `${BASE_URL}/afford/${slug}` } };
+    return { title, description, alternates: { canonical: `${BASE_URL}/afford/${slug}/` }, openGraph: { title, description, url: `${BASE_URL}/afford/${slug}/` } };
   }
 
   const title = `How Much Rent Can You Afford in ${parsed.metro.fullName}? | SalaryHog`;
   const description = `See what salary you need to afford rent in ${parsed.metro.name}. Studio to 3BR breakdown based on take-home pay.`;
-  return { title, description, alternates: { canonical: `${BASE_URL}/afford/${slug}` }, openGraph: { title, description, url: `${BASE_URL}/afford/${slug}` } };
+  return { title, description, alternates: { canonical: `${BASE_URL}/afford/${slug}/` }, openGraph: { title, description, url: `${BASE_URL}/afford/${slug}/` } };
 }
 
 const metroOptions = getAllMetros().slice(0, 50).map(m => ({ slug: m.slug, name: m.name, fullName: m.fullName, stateCode: m.stateCode }));

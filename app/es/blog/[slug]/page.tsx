@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const post = getPostBySlugEs(slug);
   if (!post) return {};
 
-  const canonical = `${BASE_URL}/es/blog/${slug}`;
+  const canonical = `${BASE_URL}/es/blog/${slug}/`;
   const englishSlug = BLOG_HREFLANG[slug];
 
   return {
@@ -35,9 +35,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: {
       canonical,
       languages: englishSlug ? {
-        'en': `${BASE_URL}/blog/${englishSlug}`,
+        'en': `${BASE_URL}/blog/${englishSlug}/`,
         'es': canonical,
-        'x-default': `${BASE_URL}/blog/${englishSlug}`,
+        'x-default': `${BASE_URL}/blog/${englishSlug}/`,
       } : {
         'es': canonical,
       },

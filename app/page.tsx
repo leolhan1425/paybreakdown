@@ -5,6 +5,7 @@ import { getAllPosts } from '@/lib/blog';
 import HomepageCalculator from '@/components/HomepageCalculator';
 import FAQAccordion from '@/components/FAQAccordion';
 import EmailCapture from '@/components/EmailCapture';
+import ProductCTA from '@/components/ProductCTA';
 import { faqSchema, webAppSchema, websiteSchema } from '@/lib/structured-data';
 import statesData from '../data/states.json';
 
@@ -82,38 +83,55 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppSchema()) }} />
 
       {/* Hero */}
-      <section className="bg-white py-10 md:py-16 border-b border-gray-100">
-        <div className="max-w-2xl mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
-            How Much Do You Actually Take Home?
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-indigo-50/30 py-12 md:py-20 border-b border-gray-200/50">
+        {/* Subtle decorative elements */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100/30 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-indigo-100/20 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+        <div className="relative max-w-2xl mx-auto px-4 text-center">
+          <p className="text-sm font-medium text-blue-600 mb-3 tracking-wide uppercase">Free 2025 Calculator</p>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 leading-tight tracking-tight">
+            How Much Do You <span className="text-gradient">Actually</span> Take Home?
           </h1>
-          <p className="text-lg text-gray-600 mb-8">
-            Free salary calculator with federal & state tax breakdowns for all 50 states. Updated for 2025.
+          <p className="text-lg text-gray-500 mb-10 max-w-lg mx-auto">
+            Federal &amp; state tax breakdowns for all 50 states. Enter your salary and see exactly what hits your bank account.
           </p>
           <HomepageCalculator initialResult={initialResult} />
         </div>
       </section>
 
+      {/* Email Capture — below calculator */}
+      <section className="bg-white py-8 border-b border-gray-100">
+        <div className="max-w-2xl mx-auto px-4">
+          <EmailCapture
+            headline="We're building more tools"
+            subtext="Cost-of-living comparisons, relocation calculators, and freelance tax breakdowns are coming. Get notified."
+            source="homepage"
+          />
+        </div>
+      </section>
+
+      {/* Product CTA */}
+      <section className="py-6">
+        <div className="max-w-2xl mx-auto px-4">
+          <ProductCTA />
+        </div>
+      </section>
+
       {/* Popular Calculations */}
-      <section className="bg-white py-12 border-b border-gray-100">
+      <section className="py-14 border-b border-gray-200/50">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Popular Salary Calculations</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-1">Popular Salary Calculations</h2>
+          <p className="text-sm text-gray-500 mb-6">Take-home estimates for Texas (no state tax). Click to see your state.</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {popularCards.map(card => (
               <Link
                 key={card.href}
                 href={card.href}
-                className="bg-white border border-gray-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-sm transition-all group"
+                className="bg-white border border-gray-200 rounded-xl p-4 card-hover group"
               >
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="font-semibold text-gray-900 text-base">{card.label}</p>
-                    <p className="text-sm text-gray-500 mt-0.5">Take-home ~{card.preview} in TX</p>
-                  </div>
-                  <svg className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </div>
+                <p className="font-bold text-gray-900 text-base group-hover:text-blue-600 transition-colors">{card.label}</p>
+                <p className="text-sm text-green-600 font-medium mt-1">{card.preview}</p>
+                <p className="text-xs text-gray-400 mt-0.5">take-home in TX</p>
               </Link>
             ))}
           </div>
@@ -121,10 +139,10 @@ export default function HomePage() {
       </section>
 
       {/* Browse by State */}
-      <section id="states" className="bg-gray-50 py-12 border-b border-gray-100">
+      <section id="states" className="bg-gradient-to-b from-gray-50 to-white py-14 border-b border-gray-200/50">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Browse by State</h2>
-          <p className="text-gray-600 mb-6">Select a state to see salary calculations with state-specific tax rates.</p>
+          <h2 className="text-2xl font-bold text-gray-900 mb-1">Browse by State</h2>
+          <p className="text-gray-500 text-sm mb-6">Select a state to see salary calculations with state-specific tax rates.</p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {sortedStates.map(state => {
               const badge = getStateTaxBadge(state);
@@ -132,7 +150,7 @@ export default function HomePage() {
                 <Link
                   key={state.code}
                   href={`/${state.slug}`}
-                  className="bg-white border border-gray-200 rounded-xl p-3 hover:border-blue-300 hover:shadow-sm transition-all"
+                  className="bg-white border border-gray-200 rounded-xl p-3 card-hover"
                 >
                   <p className="font-medium text-gray-900 text-sm mb-1">{state.name}</p>
                   <span className={`inline-block text-xs px-2 py-0.5 rounded-full border ${badge.cls}`}>
@@ -146,14 +164,14 @@ export default function HomePage() {
       </section>
 
       {/* Relocating? */}
-      <section className="bg-white py-12 border-b border-gray-100">
+      <section className="py-14 border-b border-gray-200/50">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h2 className="text-2xl font-bold text-gray-900">Thinking About Relocating?</h2>
-              <p className="text-gray-600 text-sm mt-1">See what salary you&apos;d need in a new city to maintain your lifestyle.</p>
+              <p className="text-gray-500 text-sm mt-1">See what salary you&apos;d need in a new city to maintain your lifestyle.</p>
             </div>
-            <Link href="/relocate" className="text-sm text-blue-600 hover:text-blue-800 font-medium">Calculator &rarr;</Link>
+            <Link href="/relocate" className="text-sm text-blue-600 hover:text-blue-800 font-medium hidden sm:block">Calculator &rarr;</Link>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
             {[
@@ -162,8 +180,8 @@ export default function HomePage() {
               { label: 'Chicago \u2192 Nashville', href: '/relocate/chicago-il-to-nashville-tn', desc: 'Cost of living 6% lower' },
               { label: 'LA \u2192 Phoenix', href: '/relocate/los-angeles-ca-to-phoenix-az', desc: 'Cost of living 14% lower' },
             ].map(card => (
-              <Link key={card.href} href={card.href} className="bg-gray-50 border border-gray-200 rounded-xl p-4 hover:border-blue-300 hover:shadow-sm transition-all">
-                <p className="font-semibold text-gray-900 text-sm">{card.label}</p>
+              <Link key={card.href} href={card.href} className="bg-white border border-gray-200 rounded-xl p-4 card-hover group">
+                <p className="font-semibold text-gray-900 text-sm group-hover:text-blue-600 transition-colors">{card.label}</p>
                 <p className="text-xs text-gray-500 mt-1">{card.desc}</p>
               </Link>
             ))}
@@ -172,20 +190,20 @@ export default function HomePage() {
       </section>
 
       {/* From the Blog */}
-      <section className="bg-white py-12 border-b border-gray-100">
+      <section className="py-14 border-b border-gray-200/50">
         <div className="max-w-5xl mx-auto px-4">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-2xl font-bold text-gray-900">From the Blog</h2>
-            <Link href="/blog" className="text-sm text-blue-600 hover:text-blue-800 font-medium">View all →</Link>
+            <Link href="/blog" className="text-sm text-blue-600 hover:text-blue-800 font-medium">View all &rarr;</Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {getAllPosts().slice(0, 3).map(post => (
               <Link
                 key={post.slug}
                 href={`/blog/${post.slug}`}
-                className="bg-white border border-gray-200 rounded-xl p-5 hover:border-blue-300 hover:shadow-sm transition-all"
+                className="bg-white border border-gray-200 rounded-xl p-5 card-hover group"
               >
-                <h3 className="font-semibold text-gray-900 text-sm mb-2 leading-snug">{post.title}</h3>
+                <h3 className="font-semibold text-gray-900 text-sm mb-2 leading-snug group-hover:text-blue-600 transition-colors">{post.title}</h3>
                 <p className="text-xs text-gray-500 line-clamp-2">{post.excerpt}</p>
                 <p className="text-xs text-gray-400 mt-3">{post.readingTime} min read</p>
               </Link>
@@ -212,34 +230,51 @@ export default function HomePage() {
       </section>
 
       {/* What's Next */}
-      <section className="py-12">
+      <section className="py-14">
         <div className="max-w-5xl mx-auto px-4">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">What&apos;s Next?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <h2 className="text-2xl font-bold text-gray-900 mb-2 text-center">Explore More Tools</h2>
+          <p className="text-sm text-gray-500 text-center mb-8">Every angle on your paycheck, from relocation to filing status.</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <Link
+              href="/married"
+              className="bg-white border border-gray-200 rounded-xl p-6 card-hover text-center group"
+            >
+              <div className="w-12 h-12 bg-pink-50 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" /></svg>
+              </div>
+              <p className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">Married Filing</p>
+              <p className="text-xs text-gray-500">Joint vs separate</p>
+            </Link>
             <Link
               href="/afford"
-              className="bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-sm transition-all text-center"
+              className="bg-white border border-gray-200 rounded-xl p-6 card-hover text-center group"
             >
-              <div className="text-3xl mb-3">&#128202;</div>
-              <p className="font-semibold text-gray-900 mb-2">Budget Your Pay</p>
-              <p className="text-sm text-gray-500">See how far your take-home goes with our rent affordability calculator.</p>
-              <p className="text-sm text-blue-600 font-medium mt-3">Get Started &rarr;</p>
+              <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" /></svg>
+              </div>
+              <p className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">Budget Your Pay</p>
+              <p className="text-xs text-gray-500">Rent affordability</p>
             </Link>
             <Link
               href="/compare/texas-vs-california"
-              className="bg-white border border-gray-200 rounded-xl p-6 hover:border-blue-300 hover:shadow-sm transition-all text-center"
+              className="bg-white border border-gray-200 rounded-xl p-6 card-hover text-center group"
             >
-              <div className="text-3xl mb-3">&#9878;</div>
-              <p className="font-semibold text-gray-900 mb-2">Compare States</p>
-              <p className="text-sm text-gray-500">Would you keep more in another state? Compare side by side.</p>
-              <p className="text-sm text-blue-600 font-medium mt-3">Compare Now &rarr;</p>
+              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path d="M7.5 21 3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" /></svg>
+              </div>
+              <p className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">Compare States</p>
+              <p className="text-xs text-gray-500">Side by side</p>
             </Link>
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
-              <div className="text-3xl mb-3">&#128231;</div>
-              <p className="font-semibold text-gray-900 mb-2">Get Tax Updates</p>
-              <p className="text-sm text-gray-500 mb-3">Get a detailed breakdown sent to your inbox &mdash; plus 2026 tax bracket updates.</p>
-              <EmailCapture />
-            </div>
+            <Link
+              href="/freelance"
+              className="bg-white border border-gray-200 rounded-xl p-6 card-hover text-center group"
+            >
+              <div className="w-12 h-12 bg-amber-50 rounded-xl flex items-center justify-center mx-auto mb-3">
+                <svg className="w-6 h-6 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 0 0 .75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 0 0-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0 1 12 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 0 1-.673-.38m0 0A2.18 2.18 0 0 1 3 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 0 1 3.413-.387m7.5 0V5.25A2.25 2.25 0 0 0 13.5 3h-3a2.25 2.25 0 0 0-2.25 2.25v.894m7.5 0a48.667 48.667 0 0 0-7.5 0M12 12.75h.008v.008H12v-.008Z" /></svg>
+              </div>
+              <p className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">1099 vs W-2</p>
+              <p className="text-xs text-gray-500">Freelance comparison</p>
+            </Link>
           </div>
         </div>
       </section>

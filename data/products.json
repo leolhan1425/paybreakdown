@@ -1,0 +1,58 @@
+[
+  {
+    "id": "budget-planner",
+    "name": "TakeHomePay Budget Planner",
+    "price": "$9",
+    "description": "A plug-and-play Excel budget template built around your actual take-home pay. Enter your salary and state, and it auto-calculates your monthly budget with recommended allocations for rent, savings, debt, and discretionary spending.",
+    "features": [
+      "Pre-built formulas for all 50 states",
+      "Monthly and annual budget views",
+      "Savings goal tracker",
+      "Debt payoff timeline"
+    ],
+    "badge": null,
+    "url": "https://salaryhog.gumroad.com/l/kffpdg"
+  },
+  {
+    "id": "1099-calculator",
+    "name": "1099 vs W2 Tax Calculator",
+    "price": "$9",
+    "description": "Should you take the W-2 job or go freelance? This spreadsheet compares both scenarios side by side — including self-employment tax, the QBI deduction, and estimated quarterly payments.",
+    "features": [
+      "Side-by-side W-2 vs 1099 comparison",
+      "Self-employment tax calculated automatically",
+      "QBI deduction included",
+      "Quarterly estimated tax schedule"
+    ],
+    "badge": "Most Popular",
+    "url": "https://salaryhog.gumroad.com/l/lpsarg"
+  },
+  {
+    "id": "1099-calculator-es",
+    "name": "1099 Calculadora de Impuestos (ES)",
+    "price": "$9",
+    "description": "¿Trabajo W-2 o freelance 1099? Esta hoja de cálculo compara ambos escenarios lado a lado — incluyendo impuesto de trabajo por cuenta propia, la deducción QBI y pagos trimestrales estimados.",
+    "features": [
+      "Comparación lado a lado W-2 vs 1099",
+      "Impuesto de autoempleo calculado",
+      "Deducción QBI incluida",
+      "Calendario de pagos trimestrales"
+    ],
+    "badge": null,
+    "url": "https://salaryhog.gumroad.com/l/slhin"
+  },
+  {
+    "id": "relocation-workbook",
+    "name": "Relocation Cost Comparison",
+    "price": "$9",
+    "description": "Thinking about moving to a new city? This spreadsheet compares two locations side by side — taxes, cost of living, rent, and a weighted scoring matrix for quality-of-life factors.",
+    "features": [
+      "Side-by-side city comparison",
+      "Tax impact calculator built in",
+      "Weighted quality-of-life scoring",
+      "Moving cost estimator"
+    ],
+    "badge": null,
+    "url": "https://salaryhog.gumroad.com/l/ryhco"
+  }
+]

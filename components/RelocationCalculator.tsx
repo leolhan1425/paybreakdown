@@ -58,8 +58,20 @@ export default function RelocationCalculator({ metros, initialFrom, initialTo, i
   const result = useMemo(() => {
     if (!fromMetro || !toMetro || salary <= 0) return null;
 
-    const equivalentSalary = Math.round(salary * (toMetro.rpp / fromMetro.rpp));
     const currentTakeHome = calculateTakeHome({ amount: salary, period: 'annual', stateCode: fromMetro.stateCode, filingStatus });
+    const targetPP = currentTakeHome.takeHome.annual / (fromMetro.rpp / 100);
+
+    // Binary search: find gross salary in destination where purchasing power matches
+    let low = 10000, high = 500000;
+    for (let i = 0; i < 50; i++) {
+      const mid = Math.round((low + high) / 2);
+      const th = calculateTakeHome({ amount: mid, period: 'annual', stateCode: toMetro.stateCode, filingStatus });
+      const pp = th.takeHome.annual / (toMetro.rpp / 100);
+      if (pp < targetPP) low = mid; else high = mid;
+      if (high - low <= 100) break;
+    }
+    const equivalentSalary = Math.round((low + high) / 2);
+
     const equivalentTakeHome = calculateTakeHome({ amount: equivalentSalary, period: 'annual', stateCode: toMetro.stateCode, filingStatus });
     const sameSalaryTakeHome = calculateTakeHome({ amount: salary, period: 'annual', stateCode: toMetro.stateCode, filingStatus });
 

@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title,
     description,
-    alternates: { canonical: `${BASE_URL}/relocate/${slug}` },
-    openGraph: { title, description, url: `${BASE_URL}/relocate/${slug}` },
+    alternates: { canonical: `${BASE_URL}/relocate/${slug}/` },
+    openGraph: { title, description, url: `${BASE_URL}/relocate/${slug}/` },
   };
 }
 
@@ -204,6 +204,16 @@ export default async function RelocationPage({ params }: PageProps) {
             </div>
           </div>
         </section>
+
+        {/* Reverse link */}
+        <div className="mt-8 text-center">
+          <Link
+            href={`/relocate/${buildRelocationSlug(to, from)}`}
+            className="inline-block bg-white border border-gray-200 rounded-xl px-6 py-3 text-sm font-medium text-blue-600 hover:border-blue-300 hover:shadow-sm transition-all"
+          >
+            What about {to.name} to {from.name}? &rarr;
+          </Link>
+        </div>
 
         {/* Monetization block */}
         <div className="bg-gray-50 rounded-xl border border-gray-200 p-6 mt-10">

@@ -98,13 +98,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               {/* Col 3: Resources */}
               <div>
-                <p className="text-white font-semibold text-sm mb-3">Resources</p>
+                <p className="text-white font-semibold text-sm mb-3">Tools & Resources</p>
                 <ul className="space-y-1.5">
-                  <li><Link href="/blog" className="text-xs hover:text-white transition-colors">Blog</Link></li>
-                  <li><Link href="/compare/texas-vs-california" className="text-xs hover:text-white transition-colors">Compare States</Link></li>
+                  <li><Link href="/married" className="text-xs hover:text-white transition-colors">Married Filing Calculator</Link></li>
                   <li><Link href="/relocate" className="text-xs hover:text-white transition-colors">Relocation Calculator</Link></li>
                   <li><Link href="/afford" className="text-xs hover:text-white transition-colors">Rent Affordability</Link></li>
                   <li><Link href="/freelance" className="text-xs hover:text-white transition-colors">1099 vs W2 Calculator</Link></li>
+                  <li><Link href="/compare/texas-vs-california" className="text-xs hover:text-white transition-colors">Compare States</Link></li>
+                  <li><Link href="/learn" className="text-xs hover:text-white transition-colors">Learn</Link></li>
+                  <li><Link href="/blog" className="text-xs hover:text-white transition-colors">Blog</Link></li>
+                  <li><Link href="/shop" className="text-xs hover:text-white transition-colors">Shop</Link></li>
                   <li><Link href="/about" className="text-xs hover:text-white transition-colors">About</Link></li>
                   <li><Link href="/privacy" className="text-xs hover:text-white transition-colors">Privacy Policy</Link></li>
                   <li><Link href="/terms" className="text-xs hover:text-white transition-colors">Terms of Service</Link></li>

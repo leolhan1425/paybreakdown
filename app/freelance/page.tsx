@@ -3,6 +3,7 @@ import Link from 'next/link';
 import FreelanceCalculator from '@/components/FreelanceCalculator';
 import { compare1099vsW2 } from '@/lib/self-employment-tax';
 import { faqSchema, breadcrumbSchema } from '@/lib/structured-data';
+import ProductCTA from '@/components/ProductCTA';
 import statesData from '../../data/states.json';
 
 const BASE_URL = 'https://salaryhog.com';
@@ -13,11 +14,11 @@ const usd = (n: number) =>
 export const metadata: Metadata = {
   title: '1099 vs W2 Calculator: Freelancer Tax Comparison (2025) | SalaryHog',
   description: 'See how much more tax freelancers and 1099 contractors pay vs W2 employees. Side-by-side comparison with self-employment tax breakdown. Free 2025 calculator.',
-  alternates: { canonical: `${BASE_URL}/freelance` },
+  alternates: { canonical: `${BASE_URL}/freelance/` },
   openGraph: {
     title: '1099 vs W2 Calculator: Freelancer Tax Comparison | SalaryHog',
     description: 'See how much more tax freelancers pay vs W2 employees. Free 2025 calculator.',
-    url: `${BASE_URL}/freelance`,
+    url: `${BASE_URL}/freelance/`,
   },
 };
 
@@ -141,6 +142,11 @@ export default function FreelanceLandingPage() {
               </Link>
             ))}
           </div>
+        </section>
+
+        {/* Product CTA */}
+        <section className="mt-10">
+          <ProductCTA productId="1099-calculator" />
         </section>
 
         {/* Browse by state */}

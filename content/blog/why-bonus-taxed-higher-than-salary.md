@@ -1,0 +1,54 @@
+---
+title: "Why Your Bonus Check Is Taxed at 40% But Your Salary Isn't"
+slug: "why-bonus-taxed-higher-than-salary"
+excerpt: "That 40% withholding on your bonus isn't your actual tax rate — it's the IRS hedging its bets. Here's why bonuses look taxed differently than salary."
+date: "2026-04-23"
+---
+
+There's this moment that happens once or twice a year in offices across America where someone opens their paycheck, sees a bonus they've been expecting for months, and immediately texts their partner or roommate or group chat something like "they took FORTY PERCENT of my bonus, what the hell?" And then someone inevitably responds with "bonuses are taxed higher" as if that's just how money works, like bonuses exist in some separate financial dimension where the IRS takes a bigger cut because... why, exactly? Because you didn't suffer enough for it during regular work hours?
+
+The thing is — and this is going to sound like I'm setting up a technicality, which I am — bonuses are not actually taxed at a higher rate than your salary. They're withheld at a higher rate, which is a completely different thing that produces the same emotional response of watching money you thought was yours evaporate before it reaches your bank account. But the distinction matters, because understanding it is the difference between being mad at the wrong thing and being mad at the right thing, which I've always found more satisfying.
+
+Here's what's actually happening: when you get paid your normal salary, your employer withholds federal income tax based on what it thinks you'll owe for the entire year. It looks at your salary, your filing status, whatever you put on your W-4, and runs a calculation that essentially asks "if this person makes this much every paycheck for the whole year, what tax bracket will they end up in?" Then it withholds accordingly. It's an educated guess that gets refined every two weeks.
+
+But a bonus doesn't fit that pattern. It's not predictable. It's not spread evenly across the year. It's a lump sum that appears in one paycheck and makes that paycheck look completely different from all the others. And the IRS, which is not particularly interested in waiting until April to collect taxes on money you were paid in March, has given employers two options for handling this.
+
+## The Flat Rate Method (Or: Why It Looks Like Highway Robbery)
+
+The first option — and the one most employers use because it's simpler — is the flat rate method, sometimes called the percentage method, which is just a fancy way of saying "withhold 22% for federal income tax and call it a day." Except if your bonus is over a million dollars, in which case the rate jumps to 37%, because apparently once you're getting seven-figure bonuses the IRS figures you can handle a more aggressive withholding rate without calling your accountant in a panic.
+
+Now, 22% is not 40%. But here's where state taxes and FICA enter the chat like uninvited dinner guests. That 22% federal withholding is just the starting point. Then you've got Social Security tax at 6.2% (up to the wage base limit of $176,100 in 2025, which increases slightly each year), Medicare tax at 1.45%, and if your total income is high enough, an additional 0.9% Medicare surtax on earnings over $200,000 for single filers. Add state income tax — let's say you're in California at 9.3% for someone in the middle-upper brackets, or New York at 6.85% — and suddenly that 22% federal withholding is swimming in a much larger pool of deductions.
+
+Do the math: 22% federal + 6.2% Social Security + 1.45% Medicare + 9% state tax gets you to 38.65%. Round up for the additional Medicare tax if applicable, and yeah, 40% is not a made-up number. It's a real withholding rate that appears on real paychecks. It just doesn't represent your actual tax liability on that money — it represents what gets held back right now, in this moment, before anyone's done the real accounting.
+
+The second option employers have is the aggregate method, which almost nobody uses because it's annoying. This method pretends your bonus is just part of a regular paycheck — it adds the bonus to your normal salary for that pay period, withholds taxes as if you made that combined amount every paycheck all year long, then subtracts what would have been withheld on your normal paycheck alone. The difference is what gets withheld from the bonus.
+
+This sounds more accurate in theory, but in practice it can produce even weirder results, because if you get a big enough bonus, the system temporarily thinks you're earning at an annualized rate that would put you in a much higher tax bracket. Get a $20,000 bonus added to your normal $3,000 biweekly paycheck, and for withholding purposes, the math thinks you're making $598,000 a year. Which you're not. But the withholding system doesn't know that. It just sees a very large paycheck and responds accordingly.
+
+## The Thing Nobody Tells You Until Tax Time
+
+Here's what makes this whole system particularly maddening: none of this withholding determines what you actually owe. When you file your taxes in April, the IRS doesn't care whether a dollar came from salary, bonus, stock options, or a prize you won on a game show. It all goes in the same bucket labeled "income," and your actual tax liability gets calculated on the total. If too much was withheld — which often happens with bonuses, especially if you only get one or two a year and they're not enormous — you get a refund. If too little was withheld, you write a check.
+
+This is why tax professionals roll their eyes when people say "I don't want a raise because it'll put me in a higher tax bracket." That's not how marginal tax rates work — only the income above each threshold gets taxed at the higher rate, not your entire income. But it's also why people get genuinely confused about bonuses, because the withholding system is doing something that looks like a higher tax rate, even though it's really just the government making sure it gets paid sooner rather than later.
+
+I built the SalaryHog calculator partly because of questions like this — people trying to figure out what their actual take-home would be on a bonus, or whether a one-time payment would push them into a higher bracket (it might, but only for the amount above the threshold), or how much of a year-end bonus would actually hit their bank account after all the withholding. The calculator separates regular salary from additional income for exactly this reason, because the withholding treatment is different even though the tax treatment ultimately isn't.
+
+What's interesting is how this creates a psychological effect that works in the government's favor. Most people would rather get a $2,000 refund in April than owe $500, even though the refund means they gave the government an interest-free loan for months. But because bonus withholding is so aggressive, it basically guarantees that if you get any bonuses during the year, you're probably going to over-withhold overall. Which makes tax season feel like a win, even though financially you'd have been better off with more money in each paycheck and a smaller refund — or even a small amount owed — at the end.
+
+There's also a fairness question embedded in here that nobody really talks about. If you're a salaried employee getting a $10,000 year-end bonus, you're subject to this 22% flat-rate withholding (plus FICA and state) regardless of your actual tax bracket. But if you're in the 12% bracket, that means you're massively over-withholding and waiting months for your own money back. Meanwhile, if you're in the 35% bracket, you're under-withholding and will owe more in April. The flat rate is designed to be simple, not equitable.
+
+Some people try to game this by adjusting their W-4 allowances in the paycheck before a bonus, reducing withholding on the bonus itself, then changing it back. This is technically allowed but annoying to manage and easy to screw up. You can also ask your employer to use the aggregate method instead of the flat rate, but most payroll systems default to the flat rate and changing it requires someone in HR to care enough to override the default, which is not a given.
+
+## What This Means If You're Actually Planning Around a Bonus
+
+If you're trying to figure out what a bonus will actually net you after taxes, you can't just multiply by 0.6 and call it done — or rather, you can, and you'll be close, but the real answer depends on your total income for the year. A $10,000 bonus for someone making $50,000 gets taxed (eventually, after filing) at a different effective rate than the same bonus for someone making $200,000, because tax brackets are marginal and cumulative.
+
+The withholding might look the same in both cases if the employer uses the flat rate method — both people see that same 22% federal line item on their paystubs — but when April comes around, the actual tax impact diverges. The person making $50,000 probably over-withheld significantly. The person making $200,000 might have under-withheld, especially if they're in a high-tax state or subject to the additional Medicare tax.
+
+This is also why people in finance and tech, who often get a meaningful chunk of their compensation in bonuses or RSUs (which are taxed similarly), become obsessed with tax planning in a way that people with straightforward salaries don't. When 20-40% of your annual comp comes in lumpy payments that get withholding treatment that doesn't match your actual liability, you start caring a lot about quarterly estimated payments and W-4 adjustments and whether you should be doing a backdoor Roth conversion before the end of the year.
+
+None of this changes the fact that seeing 40% of your bonus vanish before you get it feels bad. It feels like the system is punishing you for getting extra money, even though intellectually you know it's just withholding and you'll settle up later. There's something about the visible deduction — right there on the paystub, bigger than any withholding you've seen on a regular paycheck — that hits differently than the abstract knowledge that you're in, say, the 24% bracket.
+
+And maybe that's the point. Maybe aggressive withholding on bonuses is a feature, not a bug — a way to make sure the government gets paid on irregular income without having to chase people down later. Or maybe it's just an artifact of a tax system that was designed for predictable wages and never quite adapted to a world where comp packages include profit sharing and stock grants and referral bonuses and all the other weird ways companies pay people now.
+
+Either way, your bonus isn't taxed at 40%. It's withheld at something close to that, temporarily, until the real math gets done. Which doesn't make the check any bigger, but at least now you know what to be annoyed about.

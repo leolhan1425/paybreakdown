@@ -1,10 +1,12 @@
 name: Auto Blog Post
 
 on:
-  schedule:
-    - cron: '0 14 * * 1'  # Every Monday 9am ET (14:00 UTC)
-    - cron: '0 14 * * 4'  # Every Thursday 9am ET (14:00 UTC)
-  workflow_dispatch: {}     # Manual trigger from GitHub UI
+  # Auto-posting schedule disabled 2026-06-19 — traffic too low to justify (~5 views/day,
+  # 0 email signups, 1 sale). Site stays live; this can still be run manually if needed.
+  #   schedule:
+  #     - cron: '0 14 * * 1'  # Every Monday 9am ET (14:00 UTC)
+  #     - cron: '0 14 * * 4'  # Every Thursday 9am ET (14:00 UTC)
+  workflow_dispatch: {}     # Manual trigger from GitHub UI only
 
 permissions:
   contents: write
